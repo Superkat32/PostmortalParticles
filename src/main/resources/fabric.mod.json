@@ -17,6 +17,9 @@
 	"entrypoints": {
 		"main": [
           "net.superkat.PostmortalMain"
+		],
+		"client": [
+			"net.superkat.PostmortalClient"
 		]
 	},
 	"mixins": [
