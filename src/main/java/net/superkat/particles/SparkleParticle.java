@@ -6,11 +6,12 @@ import net.minecraft.client.particle.*;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.particle.DefaultParticleType;
 
-public class SparkleParticle extends SpriteBillboardParticle {
+@Environment(EnvType.CLIENT)
+public class SparkleParticle extends AnimatedParticle {
     private final SpriteProvider spriteProvider;
 
     SparkleParticle(ClientWorld world, double x, double y, double z, double velocityX, double velocityY, double velocityZ, SpriteProvider spriteProvider) {
-        super(world, x, y, z);
+        super(world, x, y, z, spriteProvider, 1.25F);
 //        this.velocityMultiplier = 0.6F;
         this.spriteProvider = spriteProvider;
         this.maxAge = 30;
