@@ -6,6 +6,7 @@ import net.minecraft.client.particle.*;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.particle.DefaultParticleType;
 
+@Environment(EnvType.CLIENT)
 public class PortalParticle extends SpriteBillboardParticle {
     private final SpriteProvider spriteProvider;
 

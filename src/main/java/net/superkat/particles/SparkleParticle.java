@@ -10,18 +10,26 @@ import net.minecraft.particle.DefaultParticleType;
 public class SparkleParticle extends AnimatedParticle {
     private final SpriteProvider spriteProvider;
 
+    //This boolean is used as a workaround
+    //If enabled, only a few of all particles spawned will actually spawn
+    //This is here because in ClientPlayNetworkHandlerMixin, there is a particle emitter which spawns this exact particle
+    //The thing is, I don't want a lot of sparkle particles to spawn, but I want to use the emitter function
+    //So this boolean is the workaround
+    boolean shouldReduceAmountThatSpawn = true;
+    boolean reducing = true;
+
     SparkleParticle(ClientWorld world, double x, double y, double z, double velocityX, double velocityY, double velocityZ, SpriteProvider spriteProvider) {
         super(world, x, y, z, spriteProvider, 1.25F);
-//        this.velocityMultiplier = 0.6F;
+        this.velocityMultiplier = 0.6F;
         this.spriteProvider = spriteProvider;
         this.maxAge = 30;
-        this.scale = 0.01F;
-        this.velocityX = velocityX;
-        this.velocityY = velocityY;
-        this.velocityZ = velocityZ;
-        this.x = x + this.random.nextFloat() * 3 * this.random.nextBetween(-1, 1);
+        this.scale = 0.001F;
+        this.velocityX = 0;
+        this.velocityY = 0;
+        this.velocityZ = 0;
+        this.x = x + this.random.nextFloat() * 2 * this.random.nextBetween(-1, 1);
         this.y = y + this.random.nextFloat() * 2;
-        this.z = z + this.random.nextFloat() * 3 * this.random.nextBetween(-1, 1);
+        this.z = z + this.random.nextFloat() * 2 * this.random.nextBetween(-1, 1);
         this.angle = random.nextFloat() * (float)(2 * Math.PI);
 //        this.angle = 1.2F;
 //        this.setBoundingBoxSpacing(0.02F, 0.02F);
@@ -43,6 +51,19 @@ public class SparkleParticle extends AnimatedParticle {
         if (this.age++ >= this.maxAge || this.scale <= 0) {
             this.markDead();
         } else {
+            if(this.age == 1) {
+                if(shouldReduceAmountThatSpawn) {
+                    if(reducing) {
+                        int shouldSpawn = this.random.nextBetween(1, 28);
+                        if(shouldSpawn == 1) {
+                            this.scale = 0.01F;
+                        } else {
+                            reducing = false;
+                            this.markDead();
+                        }
+                    }
+                }
+            }
             if (this.age <= 7) {
                 this.scale += 0.05;
             } else if (this.age <= 15) {
