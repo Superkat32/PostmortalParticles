@@ -1,7 +1,6 @@
 package net.superkat;
 
 import net.fabricmc.api.ModInitializer;
-
 import net.fabricmc.fabric.api.particle.v1.FabricParticleTypes;
 import net.minecraft.particle.DefaultParticleType;
 import net.minecraft.registry.Registries;
@@ -15,11 +14,13 @@ public class PostmortalMain implements ModInitializer {
 	public static final Logger LOGGER = LoggerFactory.getLogger("postmortalparticles");
 
 	public static final DefaultParticleType PORTAL = FabricParticleTypes.simple();
+	public static final DefaultParticleType SPARKLE = FabricParticleTypes.simple();
 
 	@Override
 	public void onInitialize() {
 
 		Registry.register(Registries.PARTICLE_TYPE, new Identifier(MOD_ID, "portal"), PORTAL);
+		Registry.register(Registries.PARTICLE_TYPE, new Identifier(MOD_ID, "sparkle"), SPARKLE);
 		LOGGER.info("Hello Fabric world!");
 
 	}
