@@ -15,12 +15,14 @@ public class PostmortalMain implements ModInitializer {
 
 	public static final DefaultParticleType VORTEX = FabricParticleTypes.simple();
 	public static final DefaultParticleType SPARKLE = FabricParticleTypes.simple();
+	public static final DefaultParticleType EXPLOSION = FabricParticleTypes.simple();
 
 	@Override
 	public void onInitialize() {
 
 		Registry.register(Registries.PARTICLE_TYPE, new Identifier(MOD_ID, "vortex"), VORTEX);
 		Registry.register(Registries.PARTICLE_TYPE, new Identifier(MOD_ID, "sparkle"), SPARKLE);
+		Registry.register(Registries.PARTICLE_TYPE, new Identifier(MOD_ID, "explosion"), EXPLOSION);
 		LOGGER.info("Hello Fabric world!");
 
 	}
