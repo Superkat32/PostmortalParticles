@@ -28,7 +28,7 @@ public abstract class ExampleMixin implements TickablePacketListener, ClientPlay
 	private void init(EntityStatusS2CPacket packet, CallbackInfo ci) {
 //		Entity entity = packet.getEntity(this.world);
 		Entity entity = packet.getEntity(this.world);
-		this.world.addParticle(PostmortalMain.PORTAL, entity.getX(), entity.getY(), entity.getZ(), 0, 0, 0);
+		this.world.addParticle(PostmortalMain.VORTEX, entity.getX(), entity.getY(), entity.getZ(), 0, 0, 0);
 		this.client.particleManager.addEmitter(entity, PostmortalMain.SPARKLE, 100);
 //		this.client.particleManager.addParticle(PostmortalMain.PORTAL, entity.getX(), );
 //		this.client.particleManager.addEmitter(entity, ParticleTypes.END_ROD, 30);

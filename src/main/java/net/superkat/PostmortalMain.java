@@ -13,13 +13,13 @@ public class PostmortalMain implements ModInitializer {
 	public static final String MOD_ID = "postmortalparticles";
 	public static final Logger LOGGER = LoggerFactory.getLogger("postmortalparticles");
 
-	public static final DefaultParticleType PORTAL = FabricParticleTypes.simple();
+	public static final DefaultParticleType VORTEX = FabricParticleTypes.simple();
 	public static final DefaultParticleType SPARKLE = FabricParticleTypes.simple();
 
 	@Override
 	public void onInitialize() {
 
-		Registry.register(Registries.PARTICLE_TYPE, new Identifier(MOD_ID, "portal"), PORTAL);
+		Registry.register(Registries.PARTICLE_TYPE, new Identifier(MOD_ID, "vortex"), VORTEX);
 		Registry.register(Registries.PARTICLE_TYPE, new Identifier(MOD_ID, "sparkle"), SPARKLE);
 		LOGGER.info("Hello Fabric world!");
 

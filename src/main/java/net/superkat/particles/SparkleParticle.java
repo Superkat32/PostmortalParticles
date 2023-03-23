@@ -54,7 +54,7 @@ public class SparkleParticle extends AnimatedParticle {
             if(this.age == 1) {
                 if(shouldReduceAmountThatSpawn) {
                     if(reducing) {
-                        int shouldSpawn = this.random.nextBetween(1, 28);
+                        int shouldSpawn = this.random.nextBetween(1, 30);
                         if(shouldSpawn == 1) {
                             this.scale = 0.01F;
                         } else {
