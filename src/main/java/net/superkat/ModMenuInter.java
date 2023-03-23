@@ -8,6 +8,6 @@ import net.minecraft.text.Text;
 public class ModMenuInter implements ModMenuApi {
     @Override
     public ConfigScreenFactory<?> getModConfigScreenFactory() {
-        return GuiTest::getModConfigScreenFactory;
+        return parent -> GuiTest::makeScreen;
     }
 }
