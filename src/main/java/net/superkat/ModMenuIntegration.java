@@ -2,12 +2,10 @@ package net.superkat;
 
 import com.terraformersmc.modmenu.api.ConfigScreenFactory;
 import com.terraformersmc.modmenu.api.ModMenuApi;
-import dev.isxander.yacl.api.YetAnotherConfigLib;
-import net.minecraft.text.Text;
 
-public class ModMenuInter implements ModMenuApi {
+public class ModMenuIntegration implements ModMenuApi {
     @Override
     public ConfigScreenFactory<?> getModConfigScreenFactory() {
-        return GuiTest::getModConfigScreenFactory;
+        return GuiTest::makeScreen;
     }
 }

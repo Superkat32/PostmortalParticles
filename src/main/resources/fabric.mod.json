@@ -20,6 +20,9 @@
 		],
 		"client": [
 			"net.superkat.PostmortalClient"
+		],
+		"modmenu": [
+			"net.superkat.ModMenuIntegration"
 		]
 	},
 	"mixins": [
