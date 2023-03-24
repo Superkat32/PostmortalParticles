@@ -1,20 +1,20 @@
 package net.superkat;
 
-import dev.isxander.yacl.api.*;
+import dev.isxander.yacl.api.ConfigCategory;
+import dev.isxander.yacl.api.Option;
+import dev.isxander.yacl.api.OptionGroup;
+import dev.isxander.yacl.api.YetAnotherConfigLib;
 import dev.isxander.yacl.config.ConfigEntry;
 import dev.isxander.yacl.config.ConfigInstance;
 import dev.isxander.yacl.config.GsonConfigInstance;
-import dev.isxander.yacl.gui.controllers.ActionController;
-import dev.isxander.yacl.gui.controllers.BooleanController;
 import dev.isxander.yacl.gui.controllers.TickBoxController;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.text.Text;
 
 import java.nio.file.Path;
 
-public class GuiTest {
-    public static final ConfigInstance<GuiTest> INSTANCE = new GsonConfigInstance<>(GuiTest.class, Path.of("./config/yacl-test.json"));
+public class PostmortalConfig {
+    public static final ConfigInstance<PostmortalConfig> INSTANCE = new GsonConfigInstance<>(PostmortalConfig.class, Path.of("./config/postmortal-config.json"));
 
     @ConfigEntry public boolean myBoolean = true;
 
@@ -69,7 +69,6 @@ public class GuiTest {
         return YetAnotherConfigLib.create(INSTANCE, (defaults, config, builder) -> {
             var categoryBuilder = ConfigCategory.createBuilder()
                     .name(Text.literal("category"));
-
             var group = OptionGroup.createBuilder()
                     .name(Text.literal("group"))
                     .tooltip(Text.literal("group tooltip"));
