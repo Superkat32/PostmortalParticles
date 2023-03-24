@@ -16,31 +16,31 @@ import java.nio.file.Path;
 public class PostmortalConfig {
     public static final ConfigInstance<PostmortalConfig> INSTANCE = new GsonConfigInstance<>(PostmortalConfig.class, Path.of("./config/postmortal-config.json"));
 
-    @ConfigEntry public boolean myBoolean = true;
+    @ConfigEntry public boolean vortexParticle = true;
 
     public static Screen makeScreen(Screen parent) {
         return YetAnotherConfigLib.create(INSTANCE, (defaults, config, builder) -> {
-            var categoryBuilder = ConfigCategory.createBuilder()
+            var particlesCategoryBuilder = ConfigCategory.createBuilder()
                     .name(Text.literal("Particles"));
-            var group = OptionGroup.createBuilder()
+            var vortexGroup = OptionGroup.createBuilder()
                     .name(Text.literal("Vortex"))
                     .tooltip(Text.literal("All config options related to the vortex particle"));
-            var myBoolean = Option.createBuilder(boolean.class)
+            var vortex = Option.createBuilder(boolean.class)
                     .name(Text.literal("Vortex Particle"))
                     .tooltip(Text.literal("Should the vortex particle be shown"))
                     .binding(
-                            defaults.myBoolean,
-                            () -> config.myBoolean,
-                            val -> config.myBoolean = val
+                            defaults.vortexParticle,
+                            () -> config.vortexParticle,
+                            val -> config.vortexParticle = val
                     )
                     .controller(booleanOption -> new BooleanController(booleanOption, true))
                     .build();
-            group.option(myBoolean);
-            categoryBuilder.group(group.build());
+            vortexGroup.option(vortex);
+            particlesCategoryBuilder.group(vortexGroup.build());
 
             return builder
                     .title(Text.literal("Postmortal Particles Config"))
-                    .category(categoryBuilder.build());
+                    .category(particlesCategoryBuilder.build());
         }).generateScreen(parent);
     }
 }
