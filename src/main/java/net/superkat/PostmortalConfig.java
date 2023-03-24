@@ -18,6 +18,8 @@ public class PostmortalConfig {
 
     @ConfigEntry public boolean vortexParticle = true;
 
+
+    //TODO - Change all "Text.literal('string')" to work with the language file(e.g "Text.translatable('bleh.bleh.bleh")
     public static Screen makeScreen(Screen parent) {
         return YetAnotherConfigLib.create(INSTANCE, (defaults, config, builder) -> {
             var particlesCategoryBuilder = ConfigCategory.createBuilder()
