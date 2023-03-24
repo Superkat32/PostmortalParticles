@@ -7,7 +7,7 @@ import dev.isxander.yacl.api.YetAnotherConfigLib;
 import dev.isxander.yacl.config.ConfigEntry;
 import dev.isxander.yacl.config.ConfigInstance;
 import dev.isxander.yacl.config.GsonConfigInstance;
-import dev.isxander.yacl.gui.controllers.TickBoxController;
+import dev.isxander.yacl.gui.controllers.BooleanController;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.text.Text;
 
@@ -68,25 +68,25 @@ public class PostmortalConfig {
     public static Screen makeScreen(Screen parent) {
         return YetAnotherConfigLib.create(INSTANCE, (defaults, config, builder) -> {
             var categoryBuilder = ConfigCategory.createBuilder()
-                    .name(Text.literal("category"));
+                    .name(Text.literal("Particles"));
             var group = OptionGroup.createBuilder()
-                    .name(Text.literal("group"))
-                    .tooltip(Text.literal("group tooltip"));
+                    .name(Text.literal("Vortex"))
+                    .tooltip(Text.literal("All config options related to the vortex particle"));
             var myBoolean = Option.createBuilder(boolean.class)
-                    .name(Text.literal("My Boolean"))
-                    .tooltip(Text.literal("PLEASE work"))
+                    .name(Text.literal("Vortex Particle"))
+                    .tooltip(Text.literal("Should the vortex particle be shown"))
                     .binding(
                             defaults.myBoolean,
                             () -> config.myBoolean,
                             val -> config.myBoolean = val
                     )
-                    .controller(TickBoxController::new)
+                    .controller(booleanOption -> new BooleanController(booleanOption, true))
                     .build();
             group.option(myBoolean);
             categoryBuilder.group(group.build());
 
             return builder
-                    .title(Text.literal("Title"))
+                    .title(Text.literal("Postmortal Particles Config"))
                     .category(categoryBuilder.build());
         }).generateScreen(parent);
     }
