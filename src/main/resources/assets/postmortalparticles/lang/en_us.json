@@ -23,6 +23,16 @@
   "postmortalparticles.default.group": "Default Particles",
   "postmortalparticles.default.group.tooltip": "Default particles options",
   "postmortalparticles.default.enabled": "Default Particles",
-  "postmortalparticles.default.enabled.tooltip": "Should the default particles be shown?"
+  "postmortalparticles.default.enabled.tooltip": "Should the default particles be shown?",
 
+
+
+  "postmortalparticles.category.other": "Other",
+
+  "postmortalparticles.other.group": "Other Mod Options",
+  "postmortalparticles.other.group.tooltip": "Sometimes useful other mod options",
+  "postmortalparticles.other.modenabled": "Mod Enabled?",
+  "postmortalparticles.other.modenabled.tooltip": "Should the mod be enabled?",
+  "postmortalparticles.other.spamlogs": "Debug Logs Enabled?",
+  "postmortalparticles.other.spamlogs.tooltip": "WARNING: Will spam your logs!"
 }

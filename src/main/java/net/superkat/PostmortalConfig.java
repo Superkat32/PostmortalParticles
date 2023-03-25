@@ -22,6 +22,8 @@ public class PostmortalConfig {
     @ConfigEntry public int sparkleTimer = 5;
     @ConfigEntry public boolean sparkleExplosionParticle = true;
     @ConfigEntry public boolean defaultParticles = true;
+    @ConfigEntry public boolean modEnabled = true;
+    @ConfigEntry public boolean spamLogs = true;
 
 
     //TODO - Change all "Text.literal('string')" to work with the language file(e.g "Text.translatable('bleh.bleh.bleh")
@@ -110,9 +112,44 @@ public class PostmortalConfig {
             defaultGroup.option(defaultParticles);
             particlesCategoryBuilder.group(defaultGroup.build());
 
+
+
+            //Other category
+            var otherCategoryBuilder = ConfigCategory.createBuilder()
+                    .name(Text.translatable("postmortalparticles.category.other"));
+
+            //Other group
+            var otherGroup = OptionGroup.createBuilder()
+                    .name(Text.translatable("postmortalparticles.other.group"))
+                    .tooltip(Text.translatable("postmortalparticles.other.group.tooltip"));
+            var modEnabled = Option.createBuilder(boolean.class)
+                    .name(Text.translatable("postmortalparticles.other.modenabled"))
+                    .tooltip(Text.translatable("postmortalparticles.other.modenabled.tooltip"))
+                    .binding(
+                            defaults.modEnabled,
+                            () -> config.modEnabled,
+                            val -> config.modEnabled = val
+                    )
+                    .controller(booleanOption -> new BooleanController(booleanOption, true))
+                    .build();
+            var spamLogs = Option.createBuilder(boolean.class)
+                    .name(Text.translatable("postmortalparticles.other.spamlogs"))
+                    .tooltip(Text.translatable("postmortalparticles.other.spamlogs.tooltip"))
+                    .binding(
+                            defaults.spamLogs,
+                            () -> config.spamLogs,
+                            val -> config.spamLogs = val
+                    )
+                    .controller(booleanOption -> new BooleanController(booleanOption, true))
+                    .build();
+            otherGroup.option(modEnabled);
+            otherGroup.option(spamLogs);
+            otherCategoryBuilder.group(otherGroup.build());
+
             return builder
                     .title(Text.translatable("postmortalparticles.title"))
-                    .category(particlesCategoryBuilder.build());
+                    .category(particlesCategoryBuilder.build())
+                    .category(otherCategoryBuilder.build());
         }).generateScreen(parent);
     }
 }
