@@ -21,6 +21,7 @@ public class PostmortalConfig {
     @ConfigEntry public boolean sparkleParticle = true;
     @ConfigEntry public int sparkleTimer = 5;
     @ConfigEntry public boolean sparkleExplosionParticle = true;
+    @ConfigEntry public boolean defaultParticles = true;
 
 
     //TODO - Change all "Text.literal('string')" to work with the language file(e.g "Text.translatable('bleh.bleh.bleh")
@@ -92,6 +93,22 @@ public class PostmortalConfig {
             sparkleExplosionGroup.option(sparkleExplosion);
             particlesCategoryBuilder.group(sparkleExplosionGroup.build());
 
+            //Default particles group
+            var defaultGroup = OptionGroup.createBuilder()
+                    .name(Text.translatable("postmortalparticles.default.group"))
+                    .tooltip(Text.translatable("postmortalparticles.default.group.tooltip"));
+            var defaultParticles = Option.createBuilder(boolean.class)
+                    .name(Text.translatable("postmortalparticles.default.enabled"))
+                    .tooltip(Text.translatable("postmortalparticles.default.enabled.tooltip"))
+                    .binding(
+                            defaults.defaultParticles,
+                            () -> config.defaultParticles,
+                            val -> config.defaultParticles = val
+                    )
+                    .controller(booleanOption -> new BooleanController(booleanOption, true))
+                    .build();
+            defaultGroup.option(defaultParticles);
+            particlesCategoryBuilder.group(defaultGroup.build());
 
             return builder
                     .title(Text.translatable("postmortalparticles.title"))
