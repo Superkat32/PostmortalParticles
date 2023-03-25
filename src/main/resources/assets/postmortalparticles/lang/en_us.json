@@ -11,6 +11,8 @@
   "postmortalparticles.sparkle.group": "Sparkles",
   "postmortalparticles.sparkle.group.tooltip": "Sparkle particles options",
   "postmortalparticles.sparkle.enabled": "Sparkle Particle",
-  "postmortalparticles.sparkle.enabled.tooltip": "Should the sparkle particles be shown?"
+  "postmortalparticles.sparkle.enabled.tooltip": "Should the sparkle particles be shown?",
+  "postmortalparticles.sparkle.time": "Sparkle Particles Timer",
+  "postmortalparticles.sparkle.time.tooltip": "How long should the sparkles stay(in seconds)?"
 
 }

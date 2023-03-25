@@ -8,6 +8,7 @@ import dev.isxander.yacl.config.ConfigEntry;
 import dev.isxander.yacl.config.ConfigInstance;
 import dev.isxander.yacl.config.GsonConfigInstance;
 import dev.isxander.yacl.gui.controllers.BooleanController;
+import dev.isxander.yacl.gui.controllers.slider.IntegerSliderController;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.text.Text;
 
@@ -18,6 +19,7 @@ public class PostmortalConfig {
 
     @ConfigEntry public boolean vortexParticle = true;
     @ConfigEntry public boolean sparkleParticle = true;
+    @ConfigEntry public int sparkleTimer = 5;
 
 
     //TODO - Change all "Text.literal('string')" to work with the language file(e.g "Text.translatable('bleh.bleh.bleh")
@@ -58,7 +60,18 @@ public class PostmortalConfig {
                     )
                     .controller(booleanOption -> new BooleanController(booleanOption, true))
                     .build();
+            var sparkleSlider = Option.createBuilder(Integer.class)
+                    .name(Text.translatable("postmortalparticles.sparkle.enabled"))
+                    .tooltip(Text.translatable("postmortalparticles.sparkle.enabled.tooltip"))
+                    .binding(
+                            defaults.sparkleTimer,
+                            () -> config.sparkleTimer,
+                            val -> config.sparkleTimer = val
+                    )
+                    .controller(integerOption -> new <Number>IntegerSliderController(integerOption, 1, 60, 1))
+                    .build();
             sparkleGroup.option(sparkle);
+            sparkleGroup.option(sparkleSlider);
             particlesCategoryBuilder.group(sparkleGroup.build());
 
 
