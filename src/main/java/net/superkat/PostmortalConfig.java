@@ -23,13 +23,13 @@ public class PostmortalConfig {
     public static Screen makeScreen(Screen parent) {
         return YetAnotherConfigLib.create(INSTANCE, (defaults, config, builder) -> {
             var particlesCategoryBuilder = ConfigCategory.createBuilder()
-                    .name(Text.literal("Particles"));
+                    .name(Text.translatable("postmortalparticles.category.particle"));
             var vortexGroup = OptionGroup.createBuilder()
-                    .name(Text.literal("Vortex"))
-                    .tooltip(Text.literal("All config options related to the vortex particle"));
+                    .name(Text.translatable("postmortalparticles.vortex.group"))
+                    .tooltip(Text.translatable("postmortalparticles.vortex.group.tooltip"));
             var vortex = Option.createBuilder(boolean.class)
-                    .name(Text.literal("Vortex Particle"))
-                    .tooltip(Text.literal("Should the vortex particle be shown"))
+                    .name(Text.translatable("postmortalparticles.vortex.enabled"))
+                    .tooltip(Text.translatable("postmortalparticles.vortex.enabled.tooltip"))
                     .binding(
                             defaults.vortexParticle,
                             () -> config.vortexParticle,
@@ -41,7 +41,7 @@ public class PostmortalConfig {
             particlesCategoryBuilder.group(vortexGroup.build());
 
             return builder
-                    .title(Text.literal("Postmortal Particles Config"))
+                    .title(Text.translatable("postmortalparticles.title"))
                     .category(particlesCategoryBuilder.build());
         }).generateScreen(parent);
     }

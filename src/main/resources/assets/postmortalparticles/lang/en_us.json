@@ -1,0 +1,11 @@
+{
+  "postmortalparticles.title": "Postmortal Particles Config",
+
+  "postmortalparticles.category.particle": "Particles",
+
+  "postmortalparticles.vortex.group": "Vortex",
+  "postmortalparticles.vortex.group.tooltip": "Vortex particle options",
+  "postmortalparticles.vortex.enabled": "Vortex Particle",
+  "postmortalparticles.vortex.enabled.tooltip": "Should the vortex be shown?"
+
+}
