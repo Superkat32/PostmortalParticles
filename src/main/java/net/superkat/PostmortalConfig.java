@@ -20,6 +20,7 @@ public class PostmortalConfig {
     @ConfigEntry public boolean vortexParticle = true;
     @ConfigEntry public boolean sparkleParticle = true;
     @ConfigEntry public int sparkleTimer = 5;
+    @ConfigEntry public boolean sparkleExplosionParticle = true;
 
 
     //TODO - Change all "Text.literal('string')" to work with the language file(e.g "Text.translatable('bleh.bleh.bleh")
@@ -61,8 +62,8 @@ public class PostmortalConfig {
                     .controller(booleanOption -> new BooleanController(booleanOption, true))
                     .build();
             var sparkleSlider = Option.createBuilder(Integer.class)
-                    .name(Text.translatable("postmortalparticles.sparkle.enabled"))
-                    .tooltip(Text.translatable("postmortalparticles.sparkle.enabled.tooltip"))
+                    .name(Text.translatable("postmortalparticles.sparkle.time"))
+                    .tooltip(Text.translatable("postmortalparticles.sparkle.time.tooltip"))
                     .binding(
                             defaults.sparkleTimer,
                             () -> config.sparkleTimer,
@@ -73,6 +74,23 @@ public class PostmortalConfig {
             sparkleGroup.option(sparkle);
             sparkleGroup.option(sparkleSlider);
             particlesCategoryBuilder.group(sparkleGroup.build());
+
+            //Sparkle explosion group
+            var sparkleExplosionGroup = OptionGroup.createBuilder()
+                    .name(Text.translatable("postmortalparticles.explosion.group"))
+                    .tooltip(Text.translatable("postmortalparticles.explosion.group.tooltip"));
+            var sparkleExplosion = Option.createBuilder(boolean.class)
+                    .name(Text.translatable("postmortalparticles.explosion.enabled"))
+                    .tooltip(Text.translatable("postmortalparticles.explosion.enabled.tooltip"))
+                    .binding(
+                            defaults.sparkleExplosionParticle,
+                            () -> config.sparkleExplosionParticle,
+                            val -> config.sparkleExplosionParticle = val
+                    )
+                    .controller(booleanOption -> new BooleanController(booleanOption, true))
+                    .build();
+            sparkleExplosionGroup.option(sparkleExplosion);
+            particlesCategoryBuilder.group(sparkleExplosionGroup.build());
 
 
             return builder
