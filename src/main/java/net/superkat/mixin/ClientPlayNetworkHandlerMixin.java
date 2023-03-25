@@ -15,11 +15,11 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
 @Mixin(ClientPlayNetworkHandler.class)
-public abstract class ExampleMixin implements TickablePacketListener, ClientPlayPacketListener {
+public abstract class ClientPlayNetworkHandlerMixin implements TickablePacketListener, ClientPlayPacketListener {
 
 	private final ClientWorld world;
 	private final MinecraftClient client;
-	public ExampleMixin(ClientWorld world, ClientWorld world1, MinecraftClient client) {
+	public ClientPlayNetworkHandlerMixin(ClientWorld world, ClientWorld world1, MinecraftClient client) {
 		super();
 		this.world = world1;
 		this.client = client;
