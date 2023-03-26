@@ -15,10 +15,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
 import static net.superkat.PostmortalConfig.INSTANCE;
+import static net.superkat.PostmortalMain.LOGGER;
 
 @Mixin(ClientPlayNetworkHandler.class)
 public abstract class ClientPlayNetworkHandlerMixin implements TickablePacketListener, ClientPlayPacketListener {
-
 	private final ClientWorld world;
 	private final MinecraftClient client;
 	public ClientPlayNetworkHandlerMixin(ClientWorld world, ClientWorld world1, MinecraftClient client) {
@@ -32,6 +32,10 @@ public abstract class ClientPlayNetworkHandlerMixin implements TickablePacketLis
 //		Entity entity = packet.getEntity(this.world);
 //		Entity entity = packet.getEntity(this.world);
 		if(INSTANCE.getConfig().modEnabled) {
+			if(INSTANCE.getConfig().spamLogs) {
+				LOGGER.info("Showing particles!");
+				logConfig();
+			}
 			if(INSTANCE.getConfig().vortexParticle) {
 				this.world.addParticle(PostmortalMain.VORTEX, entity.getX(), entity.getY(), entity.getZ(), 0, 0, 0);
 			}
@@ -48,9 +52,22 @@ public abstract class ClientPlayNetworkHandlerMixin implements TickablePacketLis
 				this.client.particleManager.addEmitter(entity, ParticleTypes.TOTEM_OF_UNDYING, (int) timer);
 			}
 		} else {
+			if(INSTANCE.getConfig().spamLogs) {
+				LOGGER.info("Not showing any particles beyond original");
+				LOGGER.info("Mod enabled/disabled status: " + INSTANCE.getConfig().modEnabled);
+			}
 				this.client.particleManager.addEmitter(entity, ParticleTypes.TOTEM_OF_UNDYING, 30);
 		}
 //		this.client.particleManager.addParticle(PostmortalMain.PORTAL, entity.getX(), );
 //		this.client.particleManager.addEmitter(entity, ParticleTypes.END_ROD, 30);
+	}
+
+	public void logConfig() {
+		LOGGER.info("Vortex particle status: " + INSTANCE.getConfig().vortexParticle);
+		LOGGER.info("Sparkle particle status: " + INSTANCE.getConfig().sparkleParticle);
+		LOGGER.info("Sparkle slider amount: " + INSTANCE.getConfig().sparkleTimer);
+		LOGGER.info("Sparkle explosion slider status: " + INSTANCE.getConfig().sparkleExplosionParticle);
+		LOGGER.info("Default particle status: " + INSTANCE.getConfig().defaultParticles);
+		LOGGER.info("Default particle slider amount: " + INSTANCE.getConfig().defaultTimer);
 	}
 }
