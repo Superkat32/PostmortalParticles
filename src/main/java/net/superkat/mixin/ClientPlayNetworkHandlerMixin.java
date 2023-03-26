@@ -37,7 +37,7 @@ public abstract class ClientPlayNetworkHandlerMixin implements TickablePacketLis
 				logConfig();
 			}
 			if(INSTANCE.getConfig().vortexParticle) {
-				this.world.addParticle(PostmortalMain.VORTEX, entity.getX(), entity.getY(), entity.getZ(), 0, 0, 0);
+				this.world.addParticle(PostmortalMain.VORTEX, entity.getX(), entity.getBodyY(1.0), entity.getZ(), 0, 0, 0);
 			}
 			if(INSTANCE.getConfig().sparkleParticle) {
 				//Multiply the number by 20, to change the time from seconds to Minecraft ticks

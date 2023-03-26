@@ -19,9 +19,9 @@ public class VortexParticle extends SpriteBillboardParticle {
         this.velocityX = velocityX;
         this.velocityY = velocityY;
         this.velocityZ = velocityZ;
-        this.x = x + this.random.nextFloat();
-        this.y = y + this.random.nextFloat();
-        this.z = z + this.random.nextFloat();
+        this.x = x;
+        this.y = y;
+        this.z = z;
 //        this.angle = random.nextFloat() * (float)(2 * Math.PI);
 //        this.angle = 1.2F;
 //        this.setBoundingBoxSpacing(0.02F, 0.02F);
