@@ -74,7 +74,7 @@ public class PostmortalConfig {
                             () -> config.sparkleTimer,
                             val -> config.sparkleTimer = val
                     )
-                    .controller(integerOption -> new <Number>IntegerSliderController(integerOption, 1, 60, 1))
+                    .controller(integerOption -> new <Number>IntegerSliderController(integerOption, 0, 30, 1))
                     .build();
             sparkleGroup.option(sparkle);
             sparkleGroup.option(sparkleSlider);
@@ -119,7 +119,7 @@ public class PostmortalConfig {
                             () -> config.defaultTimer,
                             val -> config.defaultTimer = val
                     )
-                    .controller(floatOption -> new <Number>FloatSliderController(floatOption, 1, 60, 0.1F))
+                    .controller(floatOption -> new <Number>FloatSliderController(floatOption, 0, 30, 0.1F))
                     .build();
             defaultGroup.option(defaultParticles);
             defaultGroup.option(defaultSlider);
