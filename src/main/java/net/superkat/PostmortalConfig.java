@@ -24,7 +24,7 @@ public class PostmortalConfig {
     @ConfigEntry public boolean defaultParticles = true;
     @ConfigEntry public float defaultTimer = 1.5F;
     @ConfigEntry public boolean modEnabled = true;
-    @ConfigEntry public boolean spamLogs = true;
+    @ConfigEntry public boolean spamLogs = false;
 
 
     //TODO - Change all "Text.literal('string')" to work with the language file(e.g "Text.translatable('bleh.bleh.bleh")
