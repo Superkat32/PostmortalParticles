@@ -14,6 +14,8 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
+import static net.superkat.PostmortalConfig.INSTANCE;
+
 @Mixin(ClientPlayNetworkHandler.class)
 public abstract class ClientPlayNetworkHandlerMixin implements TickablePacketListener, ClientPlayPacketListener {
 
@@ -29,10 +31,24 @@ public abstract class ClientPlayNetworkHandlerMixin implements TickablePacketLis
 	private void init(ParticleManager instance, Entity entity, ParticleEffect parameters, int maxAge) {
 //		Entity entity = packet.getEntity(this.world);
 //		Entity entity = packet.getEntity(this.world);
-		this.world.addParticle(PostmortalMain.VORTEX, entity.getX(), entity.getY(), entity.getZ(), 0, 0, 0);
-		this.client.particleManager.addEmitter(entity, PostmortalMain.SPARKLE, 100);
-		this.client.particleManager.addEmitter(entity, PostmortalMain.EXPLOSION, 10);
-		this.client.particleManager.addEmitter(entity, ParticleTypes.TOTEM_OF_UNDYING, 30);
+		if(INSTANCE.getConfig().modEnabled) {
+			if(INSTANCE.getConfig().vortexParticle) {
+				this.world.addParticle(PostmortalMain.VORTEX, entity.getX(), entity.getY(), entity.getZ(), 0, 0, 0);
+			}
+			if(INSTANCE.getConfig().sparkleParticle) {
+				//Multiply the number by 20, to change the time from seconds to Minecraft ticks
+				int timer = INSTANCE.getConfig().sparkleTimer * 20;
+				this.client.particleManager.addEmitter(entity, PostmortalMain.SPARKLE, timer);
+			}
+			if(INSTANCE.getConfig().sparkleExplosionParticle) {
+				this.client.particleManager.addEmitter(entity, PostmortalMain.EXPLOSION, 10);
+			}
+			if(INSTANCE.getConfig().defaultParticles) {
+				this.client.particleManager.addEmitter(entity, ParticleTypes.TOTEM_OF_UNDYING, 30);
+			}
+		} else {
+				this.client.particleManager.addEmitter(entity, ParticleTypes.TOTEM_OF_UNDYING, 30);
+		}
 //		this.client.particleManager.addParticle(PostmortalMain.PORTAL, entity.getX(), );
 //		this.client.particleManager.addEmitter(entity, ParticleTypes.END_ROD, 30);
 	}
