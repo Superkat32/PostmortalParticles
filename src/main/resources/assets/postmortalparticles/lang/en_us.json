@@ -13,7 +13,7 @@
   "postmortalparticles.sparkle.enabled": "Sparkle Particle",
   "postmortalparticles.sparkle.enabled.tooltip": "Should the sparkle particles be shown?",
   "postmortalparticles.sparkle.time": "Sparkle Particles Timer",
-  "postmortalparticles.sparkle.time.tooltip": "How long should the sparkles stay(in seconds)?",
+  "postmortalparticles.sparkle.time.tooltip": "How long should the sparkles last(in seconds)?",
 
   "postmortalparticles.explosion.group": "Sparkle Explosion",
   "postmortalparticles.explosion.group.tooltip": "Sparkle explosion particles options",
@@ -24,6 +24,8 @@
   "postmortalparticles.default.group.tooltip": "Default particles options",
   "postmortalparticles.default.enabled": "Default Particles",
   "postmortalparticles.default.enabled.tooltip": "Should the default particles be shown?",
+  "postmortalparticles.default.time": "Default Particles Timer",
+  "postmortalparticles.default.time.tooltip": "How long should the default particles last(in seconds)?",
 
 
 

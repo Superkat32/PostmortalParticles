@@ -8,6 +8,7 @@ import dev.isxander.yacl.config.ConfigEntry;
 import dev.isxander.yacl.config.ConfigInstance;
 import dev.isxander.yacl.config.GsonConfigInstance;
 import dev.isxander.yacl.gui.controllers.BooleanController;
+import dev.isxander.yacl.gui.controllers.slider.FloatSliderController;
 import dev.isxander.yacl.gui.controllers.slider.IntegerSliderController;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.text.Text;
@@ -22,6 +23,7 @@ public class PostmortalConfig {
     @ConfigEntry public int sparkleTimer = 5;
     @ConfigEntry public boolean sparkleExplosionParticle = true;
     @ConfigEntry public boolean defaultParticles = true;
+    @ConfigEntry public float defaultTimer = 1.5F;
     @ConfigEntry public boolean modEnabled = true;
     @ConfigEntry public boolean spamLogs = true;
 
@@ -109,7 +111,18 @@ public class PostmortalConfig {
                     )
                     .controller(booleanOption -> new BooleanController(booleanOption, true))
                     .build();
+            var defaultSlider = Option.createBuilder(Float.class)
+                    .name(Text.translatable("postmortalparticles.default.time"))
+                    .tooltip(Text.translatable("postmortalparticles.default.time.tooltip"))
+                    .binding(
+                            defaults.defaultTimer,
+                            () -> config.defaultTimer,
+                            val -> config.defaultTimer = val
+                    )
+                    .controller(floatOption -> new <Number>FloatSliderController(floatOption, 1, 60, 0.1F))
+                    .build();
             defaultGroup.option(defaultParticles);
+            defaultGroup.option(defaultSlider);
             particlesCategoryBuilder.group(defaultGroup.build());
 
 

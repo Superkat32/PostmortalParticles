@@ -44,7 +44,8 @@ public abstract class ClientPlayNetworkHandlerMixin implements TickablePacketLis
 				this.client.particleManager.addEmitter(entity, PostmortalMain.EXPLOSION, 10);
 			}
 			if(INSTANCE.getConfig().defaultParticles) {
-				this.client.particleManager.addEmitter(entity, ParticleTypes.TOTEM_OF_UNDYING, 30);
+				float timer = INSTANCE.getConfig().defaultTimer * 20;
+				this.client.particleManager.addEmitter(entity, ParticleTypes.TOTEM_OF_UNDYING, (int) timer);
 			}
 		} else {
 				this.client.particleManager.addEmitter(entity, ParticleTypes.TOTEM_OF_UNDYING, 30);
