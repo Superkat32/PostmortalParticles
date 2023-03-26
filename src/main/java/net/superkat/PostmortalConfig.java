@@ -21,6 +21,7 @@ public class PostmortalConfig {
     @ConfigEntry public boolean sparkleParticle = true;
     @ConfigEntry public float sparkleTimer = 5.0F;
     @ConfigEntry public boolean sparkleExplosionParticle = true;
+    @ConfigEntry public boolean totemParticle = true;
     @ConfigEntry public boolean defaultParticles = true;
     @ConfigEntry public float defaultTimer = 1.5F;
     @ConfigEntry public boolean modEnabled = true;
@@ -95,6 +96,23 @@ public class PostmortalConfig {
                     .build();
             sparkleExplosionGroup.option(sparkleExplosion);
             particlesCategoryBuilder.group(sparkleExplosionGroup.build());
+
+            //Totem particle group
+            var totemGroup = OptionGroup.createBuilder()
+                    .name(Text.translatable("postmortalparticles.totem.group"))
+                    .tooltip(Text.translatable("postmortalparticles.totem.group.tooltip"));
+            var totemParticle = Option.createBuilder(boolean.class)
+                    .name(Text.translatable("postmortalparticles.totem.enabled"))
+                    .tooltip(Text.translatable("postmortalparticles.totem.enabled.tooltip"))
+                    .binding(
+                            defaults.totemParticle,
+                            () -> config.totemParticle,
+                            val -> config.totemParticle = val
+                    )
+                    .controller(booleanOption -> new BooleanController(booleanOption, true))
+                    .build();
+            totemGroup.option(totemParticle);
+            particlesCategoryBuilder.group(totemGroup.build());
 
             //Default particles group
             var defaultGroup = OptionGroup.createBuilder()

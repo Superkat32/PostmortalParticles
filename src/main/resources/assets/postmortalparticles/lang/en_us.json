@@ -20,6 +20,11 @@
   "postmortalparticles.explosion.enabled": "Sparkle Explosion Particles",
   "postmortalparticles.explosion.enabled.tooltip": "Should the sparkle explosion particles be shown?",
 
+  "postmortalparticles.totem.group": "Totem",
+  "postmortalparticles.totem.group.tooltip": "Totem particle options",
+  "postmortalparticles.totem.enabled": "Visible Totem Particle",
+  "postmortalparticles.totem.enabled.tooltip": "Should the visible totem particle be shown?",
+
   "postmortalparticles.default.group": "Default Particles",
   "postmortalparticles.default.group.tooltip": "Default particles options",
   "postmortalparticles.default.enabled": "Default Particles",

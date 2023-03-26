@@ -16,12 +16,12 @@ public class TotemParticle extends SpriteBillboardParticle {
         this.spriteProvider = spriteProvider;
         this.maxAge = 40;
         this.scale = 0.4F;
-        this.velocityX = velocityX;
+        this.velocityX = velocityX + 0.05 * this.random.nextBetween(-1, 1);
         this.velocityY = velocityY - 0.01;
-        this.velocityZ = velocityZ;
-        this.x = x;
-        this.y = y;
-        this.z = z;
+        this.velocityZ = velocityZ + 0.05 * this.random.nextBetween(-1, 1);
+        this.x = x + this.random.nextFloat() * 2 * this.random.nextBetween(-1, 1);
+        this.y = y + this.random.nextFloat() * 2;
+        this.z = z + this.random.nextFloat() * 2 * this.random.nextBetween(-1, 1);
         this.collidesWithWorld = true;
         this.setSpriteForAge(spriteProvider);
     }
