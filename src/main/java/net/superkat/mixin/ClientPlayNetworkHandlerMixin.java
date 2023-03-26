@@ -37,8 +37,8 @@ public abstract class ClientPlayNetworkHandlerMixin implements TickablePacketLis
 			}
 			if(INSTANCE.getConfig().sparkleParticle) {
 				//Multiply the number by 20, to change the time from seconds to Minecraft ticks
-				int timer = INSTANCE.getConfig().sparkleTimer * 20;
-				this.client.particleManager.addEmitter(entity, PostmortalMain.SPARKLE, timer);
+				float timer = INSTANCE.getConfig().sparkleTimer * 20;
+				this.client.particleManager.addEmitter(entity, PostmortalMain.SPARKLE, (int) timer);
 			}
 			if(INSTANCE.getConfig().sparkleExplosionParticle) {
 				this.client.particleManager.addEmitter(entity, PostmortalMain.EXPLOSION, 10);

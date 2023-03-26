@@ -9,7 +9,6 @@ import dev.isxander.yacl.config.ConfigInstance;
 import dev.isxander.yacl.config.GsonConfigInstance;
 import dev.isxander.yacl.gui.controllers.BooleanController;
 import dev.isxander.yacl.gui.controllers.slider.FloatSliderController;
-import dev.isxander.yacl.gui.controllers.slider.IntegerSliderController;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.text.Text;
 
@@ -20,7 +19,7 @@ public class PostmortalConfig {
 
     @ConfigEntry public boolean vortexParticle = true;
     @ConfigEntry public boolean sparkleParticle = true;
-    @ConfigEntry public int sparkleTimer = 5;
+    @ConfigEntry public float sparkleTimer = 5.0F;
     @ConfigEntry public boolean sparkleExplosionParticle = true;
     @ConfigEntry public boolean defaultParticles = true;
     @ConfigEntry public float defaultTimer = 1.5F;
@@ -66,7 +65,7 @@ public class PostmortalConfig {
                     )
                     .controller(booleanOption -> new BooleanController(booleanOption, true))
                     .build();
-            var sparkleSlider = Option.createBuilder(Integer.class)
+            var sparkleSlider = Option.createBuilder(Float.class)
                     .name(Text.translatable("postmortalparticles.sparkle.time"))
                     .tooltip(Text.translatable("postmortalparticles.sparkle.time.tooltip"))
                     .binding(
@@ -74,7 +73,7 @@ public class PostmortalConfig {
                             () -> config.sparkleTimer,
                             val -> config.sparkleTimer = val
                     )
-                    .controller(integerOption -> new <Number>IntegerSliderController(integerOption, 0, 30, 1))
+                    .controller(floatOption -> new <Number>FloatSliderController(floatOption, 0, 30, 0.1F))
                     .build();
             sparkleGroup.option(sparkle);
             sparkleGroup.option(sparkleSlider);
