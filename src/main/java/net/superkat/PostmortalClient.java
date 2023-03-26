@@ -2,10 +2,7 @@ package net.superkat;
 
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
-import net.superkat.particles.SparkleExplosionParticle;
-import net.superkat.particles.SparkleParticle;
-import net.superkat.particles.TotemParticle;
-import net.superkat.particles.VortexParticle;
+import net.superkat.particles.*;
 
 public class PostmortalClient implements ClientModInitializer {
     @Override
@@ -16,5 +13,6 @@ public class PostmortalClient implements ClientModInitializer {
         ParticleFactoryRegistry.getInstance().register(PostmortalMain.SPARKLE, SparkleParticle.Factory::new);
         ParticleFactoryRegistry.getInstance().register(PostmortalMain.EXPLOSION, SparkleExplosionParticle.Factory::new);
         ParticleFactoryRegistry.getInstance().register(PostmortalMain.TOTEM, TotemParticle.Factory::new);
+        ParticleFactoryRegistry.getInstance().register(PostmortalMain.SHATTERED, ShatteredParticle.Factory::new);
     }
 }
