@@ -34,6 +34,15 @@ public class TotemParticle extends SpriteBillboardParticle {
         if (this.age++ >= this.maxAge || this.scale <= 0) {
             this.markDead();
         } else {
+            this.velocityX += 0.007;
+            this.velocityZ += 0.007;
+            if(this.age == 20) {
+                this.velocityX *= -1;
+                this.velocityZ *= -1;
+            }
+            if(this.age >= 32) {
+                this.scale *= 0.85;
+            }
             this.setSpriteForAge(this.spriteProvider);
             this.move(this.velocityX, this.velocityY, this.velocityZ);
         }
