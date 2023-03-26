@@ -54,7 +54,7 @@ public abstract class ClientPlayNetworkHandlerMixin implements TickablePacketLis
 				LOGGER.info("Not showing any particles beyond original");
 				LOGGER.info("Mod enabled/disabled status: " + INSTANCE.getConfig().modEnabled);
 			}
-				this.client.particleManager.addEmitter(entity, ParticleTypes.TOTEM_OF_UNDYING, 30);
+			this.client.particleManager.addEmitter(entity, ParticleTypes.TOTEM_OF_UNDYING, 30);
 		}
 	}
 
