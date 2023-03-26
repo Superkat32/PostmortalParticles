@@ -21,16 +21,14 @@ import static net.superkat.PostmortalMain.LOGGER;
 public abstract class ClientPlayNetworkHandlerMixin implements TickablePacketListener, ClientPlayPacketListener {
 	private final ClientWorld world;
 	private final MinecraftClient client;
-	public ClientPlayNetworkHandlerMixin(ClientWorld world, ClientWorld world1, MinecraftClient client) {
+	public ClientPlayNetworkHandlerMixin(ClientWorld world, MinecraftClient client) {
 		super();
-		this.world = world1;
+		this.world = world;
 		this.client = client;
 	}
 
 	@Redirect(method = "onEntityStatus", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/particle/ParticleManager;addEmitter(Lnet/minecraft/entity/Entity;Lnet/minecraft/particle/ParticleEffect;I)V"))
 	private void init(ParticleManager instance, Entity entity, ParticleEffect parameters, int maxAge) {
-//		Entity entity = packet.getEntity(this.world);
-//		Entity entity = packet.getEntity(this.world);
 		if(INSTANCE.getConfig().modEnabled) {
 			if(INSTANCE.getConfig().spamLogs) {
 				LOGGER.info("Showing particles!");
@@ -58,8 +56,6 @@ public abstract class ClientPlayNetworkHandlerMixin implements TickablePacketLis
 			}
 				this.client.particleManager.addEmitter(entity, ParticleTypes.TOTEM_OF_UNDYING, 30);
 		}
-//		this.client.particleManager.addParticle(PostmortalMain.PORTAL, entity.getX(), );
-//		this.client.particleManager.addEmitter(entity, ParticleTypes.END_ROD, 30);
 	}
 
 	public void logConfig() {
