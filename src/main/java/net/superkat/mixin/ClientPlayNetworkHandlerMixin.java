@@ -66,6 +66,7 @@ public abstract class ClientPlayNetworkHandlerMixin implements TickablePacketLis
 		LOGGER.info("Sparkle particle status: " + INSTANCE.getConfig().sparkleParticle);
 		LOGGER.info("Sparkle slider amount: " + INSTANCE.getConfig().sparkleTimer);
 		LOGGER.info("Sparkle explosion slider status: " + INSTANCE.getConfig().sparkleExplosionParticle);
+		LOGGER.info("Totem particle status: " + INSTANCE.getConfig().totemParticle);
 		LOGGER.info("Default particle status: " + INSTANCE.getConfig().defaultParticles);
 		LOGGER.info("Default particle slider amount: " + INSTANCE.getConfig().defaultTimer);
 	}
