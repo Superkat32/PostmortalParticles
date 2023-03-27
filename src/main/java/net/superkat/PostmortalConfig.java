@@ -23,7 +23,7 @@ public class PostmortalConfig {
     @ConfigEntry public float sparkleTimer = 5.0F;
     @ConfigEntry public boolean sparkleExplosionParticle = true;
     @ConfigEntry public boolean totemParticle = true;
-    @ConfigEntry public boolean shatteredParticle = true;
+    @ConfigEntry public boolean shatteredParticle = false;
     @ConfigEntry public int shatteredAmount = 5;
     @ConfigEntry public boolean defaultParticles = true;
     @ConfigEntry public float defaultTimer = 1.5F;
