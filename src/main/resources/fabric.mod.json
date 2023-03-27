@@ -8,8 +8,7 @@
 		"Superkat32"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"sources": "https://github.com/Superkat32/PostmortalParticles"
 	},
 	"license": "MIT",
 	"icon": "assets/postmortalparticles/icon.png",
