@@ -9,6 +9,7 @@ import dev.isxander.yacl.config.ConfigInstance;
 import dev.isxander.yacl.config.GsonConfigInstance;
 import dev.isxander.yacl.gui.controllers.BooleanController;
 import dev.isxander.yacl.gui.controllers.slider.FloatSliderController;
+import dev.isxander.yacl.gui.controllers.slider.IntegerSliderController;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.text.Text;
 
@@ -22,6 +23,8 @@ public class PostmortalConfig {
     @ConfigEntry public float sparkleTimer = 5.0F;
     @ConfigEntry public boolean sparkleExplosionParticle = true;
     @ConfigEntry public boolean totemParticle = true;
+    @ConfigEntry public boolean shatteredParticle = true;
+    @ConfigEntry public int shatteredAmount = 5;
     @ConfigEntry public boolean defaultParticles = true;
     @ConfigEntry public float defaultTimer = 1.5F;
     @ConfigEntry public boolean modEnabled = true;
@@ -111,7 +114,29 @@ public class PostmortalConfig {
                     )
                     .controller(booleanOption -> new BooleanController(booleanOption, true))
                     .build();
+            var shatteredParticle = Option.createBuilder(boolean.class)
+                    .name(Text.translatable("postmortalparticles.shattered.enabled"))
+                    .tooltip(Text.translatable("postmortalparticles.shattered.enabled.tooltip"))
+                    .binding(
+                            defaults.shatteredParticle,
+                            () -> config.shatteredParticle,
+                            val -> config.shatteredParticle = val
+                    )
+                    .controller(booleanOption -> new BooleanController(booleanOption, true))
+                    .build();
+            var shatteredAmount = Option.createBuilder(Integer.class)
+                    .name(Text.translatable("postmortalparticles.shattered.amount"))
+                    .tooltip(Text.translatable("postmortalparticles.shattered.amount.tooltip"))
+                    .binding(
+                            defaults.shatteredAmount,
+                            () -> config.shatteredAmount,
+                            val -> config.shatteredAmount = val
+                    )
+                    .controller(integerOption -> new <Number>IntegerSliderController(integerOption, 0, 30, 1))
+                    .build();
             totemGroup.option(totemParticle);
+            totemGroup.option(shatteredParticle);
+            totemGroup.option(shatteredAmount);
             particlesCategoryBuilder.group(totemGroup.build());
 
             //Default particles group

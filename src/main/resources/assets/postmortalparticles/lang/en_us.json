@@ -24,6 +24,10 @@
   "postmortalparticles.totem.group.tooltip": "Totem particle options",
   "postmortalparticles.totem.enabled": "Visible Totem Particle",
   "postmortalparticles.totem.enabled.tooltip": "Should the visible totem particle be shown?",
+  "postmortalparticles.shattered.enabled": "Shattered Totem Particles",
+  "postmortalparticles.shattered.enabled.tooltip": "Should the shattered totem particles be shown?",
+  "postmortalparticles.shattered.amount": "Shattered Amount",
+  "postmortalparticles.shattered.amount.tooltip": "How many shattered particles should be shown?",
 
   "postmortalparticles.default.group": "Default Particles",
   "postmortalparticles.default.group.tooltip": "Default particles options",

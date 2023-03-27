@@ -17,10 +17,10 @@ public class ShatteredParticle extends SpriteBillboardParticle {
 //        this.velocityMultiplier = 0.6F;
         this.spriteProvider = spriteProvider;
         this.maxAge = 200;
-        this.scale = 0.1F + this.random.nextFloat() / 32;
-        this.velocityX = 0.25 * this.random.nextBetween(-1, 1) + this.random.nextFloat() / this.random.nextBetween(7, 20);
-        this.velocityY = 0.12 + this.random.nextFloat() / this.random.nextBetween(8, 20);
-        this.velocityZ = 0.25 * this.random.nextBetween(-1, 1) + this.random.nextFloat() / this.random.nextBetween(7, 20);
+        this.scale = 0.2F + this.random.nextFloat() / 32;
+        this.velocityX = 0.17 * this.random.nextBetween(-1, 1) + this.random.nextFloat() / this.random.nextBetween(7, 20);
+        this.velocityY = 0.09 + this.random.nextFloat() / this.random.nextBetween(8, 20);
+        this.velocityZ = 0.17 * this.random.nextBetween(-1, 1) + this.random.nextFloat() / this.random.nextBetween(7, 20);
         this.x = x + this.random.nextFloat();
         this.y = y + this.random.nextFloat();
         this.z = z + this.random.nextFloat();

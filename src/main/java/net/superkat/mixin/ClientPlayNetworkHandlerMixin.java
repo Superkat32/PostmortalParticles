@@ -48,6 +48,11 @@ public abstract class ClientPlayNetworkHandlerMixin implements TickablePacketLis
 			if(INSTANCE.getConfig().totemParticle) {
 				this.world.addParticle(PostmortalMain.TOTEM, entity.getX(), entity.getBodyY(1.0), entity.getZ(), 0, 0, 0);
 			}
+			if(INSTANCE.getConfig().shatteredParticle) {
+				for(int amount = INSTANCE.getConfig().shatteredAmount; amount >= 1; amount--) {
+					this.world.addParticle(PostmortalMain.SHATTERED, entity.getX(), entity.getBodyY(1.0), entity.getZ(), 0, 0, 0);
+				}
+			}
 			if(INSTANCE.getConfig().defaultParticles) {
 				float timer = INSTANCE.getConfig().defaultTimer * 20;
 				this.client.particleManager.addEmitter(entity, ParticleTypes.TOTEM_OF_UNDYING, (int) timer);
@@ -67,6 +72,8 @@ public abstract class ClientPlayNetworkHandlerMixin implements TickablePacketLis
 		LOGGER.info("Sparkle slider amount: " + INSTANCE.getConfig().sparkleTimer);
 		LOGGER.info("Sparkle explosion slider status: " + INSTANCE.getConfig().sparkleExplosionParticle);
 		LOGGER.info("Totem particle status: " + INSTANCE.getConfig().totemParticle);
+		LOGGER.info("Shattered particles status: " + INSTANCE.getConfig().shatteredParticle);
+		LOGGER.info("Shattered particles amount: " + INSTANCE.getConfig().shatteredAmount);
 		LOGGER.info("Default particle status: " + INSTANCE.getConfig().defaultParticles);
 		LOGGER.info("Default particle slider amount: " + INSTANCE.getConfig().defaultTimer);
 	}
