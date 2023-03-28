@@ -32,7 +32,7 @@ public abstract class ClientPlayNetworkHandlerMixin implements TickablePacketLis
 		if(INSTANCE.getConfig().modEnabled) {
 			if(INSTANCE.getConfig().spamLogs) {
 				LOGGER.info("Showing particles!");
-				logConfig();
+				logConfig(entity);
 			}
 			if(INSTANCE.getConfig().vortexParticle) {
 				this.world.addParticle(PostmortalMain.VORTEX, entity.getX(), entity.getBodyY(1.0), entity.getZ(), 0, 0, 0);
@@ -70,15 +70,11 @@ public abstract class ClientPlayNetworkHandlerMixin implements TickablePacketLis
 		}
 	}
 
-	public void logConfig() {
-		LOGGER.info("Vortex particle status: " + INSTANCE.getConfig().vortexParticle);
-		LOGGER.info("Sparkle particle status: " + INSTANCE.getConfig().sparkleParticle);
-		LOGGER.info("Sparkle slider amount: " + INSTANCE.getConfig().sparkleTimer);
-		LOGGER.info("Sparkle explosion slider status: " + INSTANCE.getConfig().sparkleExplosionParticle);
-		LOGGER.info("Totem particle status: " + INSTANCE.getConfig().totemParticle);
-		LOGGER.info("Shattered particles status: " + INSTANCE.getConfig().shatteredParticle);
-		LOGGER.info("Shattered particles amount: " + INSTANCE.getConfig().shatteredAmount);
-		LOGGER.info("Default particle status: " + INSTANCE.getConfig().defaultParticles);
-		LOGGER.info("Default particle slider amount: " + INSTANCE.getConfig().defaultTimer);
+	public void logConfig(Entity entity) {
+		LOGGER.info("Entity: " + entity.getType());
+		LOGGER.info("Uuid: " + entity.getUuidAsString());
+		LOGGER.info("X: " + entity.getX());
+		LOGGER.info("Y: " + entity.getY());
+		LOGGER.info("Z: " + entity.getZ());
 	}
 }
