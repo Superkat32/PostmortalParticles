@@ -29,6 +29,13 @@
   "postmortalparticles.shattered.amount": "Shattered Amount",
   "postmortalparticles.shattered.amount.tooltip": "How many shattered particles should be shown?",
 
+  "postmortalparticles.beam.group": "Beam Particles",
+  "postmortalparticles.beam.group.tooltip": "Beam particles options",
+  "postmortalparticles.beam.enabled": "Beam Particles",
+  "postmortalparticles.beam.enabled.tooltip": "Should the beam particles be shown?",
+  "postmortalparticles.beam.time": "Particle Timer",
+  "postmortalparticles.beam.time.tooltip": "How long should the beam particles last(in seconds)?",
+
   "postmortalparticles.default.group": "Default Particles",
   "postmortalparticles.default.group.tooltip": "Default particles options",
   "postmortalparticles.default.enabled": "Default Particles",

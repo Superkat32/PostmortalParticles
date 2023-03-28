@@ -25,6 +25,8 @@ public class PostmortalConfig {
     @ConfigEntry public boolean totemParticle = true;
     @ConfigEntry public boolean shatteredParticle = false;
     @ConfigEntry public int shatteredAmount = 5;
+    @ConfigEntry public boolean beamParticle = true;
+    @ConfigEntry public float beamTime = 7.5F;
     @ConfigEntry public boolean defaultParticles = true;
     @ConfigEntry public float defaultTimer = 1.5F;
     @ConfigEntry public boolean modEnabled = true;
@@ -136,6 +138,34 @@ public class PostmortalConfig {
             totemGroup.option(shatteredParticle);
             totemGroup.option(shatteredAmount);
             particlesCategoryBuilder.group(totemGroup.build());
+
+            //Beam particles group
+            var beamGroup = OptionGroup.createBuilder()
+                    .name(Text.translatable("postmortalparticles.beam.group"))
+                    .tooltip(Text.translatable("postmortalparticles.beam.group.tooltip"));
+            var beamParticle = Option.createBuilder(boolean.class)
+                    .name(Text.translatable("postmortalparticles.beam.enabled"))
+                    .tooltip(Text.translatable("postmortalparticles.beam.enabled.tooltip"))
+                    .binding(
+                            defaults.beamParticle,
+                            () -> config.beamParticle,
+                            val -> config.beamParticle = val
+                    )
+                    .controller(booleanOption -> new BooleanController(booleanOption, true))
+                    .build();
+            var beamTime = Option.createBuilder(Float.class)
+                    .name(Text.translatable("postmortalparticles.beam.time"))
+                    .tooltip(Text.translatable("postmortalparticles.beam.time.tooltip"))
+                    .binding(
+                            defaults.beamTime,
+                            () -> config.beamTime,
+                            val -> config.beamTime = val
+                    )
+                    .controller(floatOption -> new <Number>FloatSliderController(floatOption, 0, 30, 0.1F))
+                    .build();
+            beamGroup.option(beamParticle);
+            beamGroup.option(beamTime);
+            particlesCategoryBuilder.group(beamGroup.build());
 
             //Default particles group
             var defaultGroup = OptionGroup.createBuilder()
