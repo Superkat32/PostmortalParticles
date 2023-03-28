@@ -30,8 +30,6 @@ public class PostmortalConfig {
     @ConfigEntry public boolean modEnabled = true;
     @ConfigEntry public boolean spamLogs = false;
 
-
-    //TODO - Change all "Text.literal('string')" to work with the language file(e.g "Text.translatable('bleh.bleh.bleh")
     public static Screen makeScreen(Screen parent) {
         return YetAnotherConfigLib.create(INSTANCE, (defaults, config, builder) -> {
             //Particles category
