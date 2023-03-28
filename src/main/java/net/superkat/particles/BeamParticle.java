@@ -7,7 +7,7 @@ import net.minecraft.client.world.ClientWorld;
 import net.minecraft.particle.DefaultParticleType;
 
 @Environment(EnvType.CLIENT)
-public class GlitterParticle extends SpriteBillboardParticle {
+public class BeamParticle extends SpriteBillboardParticle {
     private final SpriteProvider spriteProvider;
 
     //This boolean is used as a workaround
@@ -20,15 +20,15 @@ public class GlitterParticle extends SpriteBillboardParticle {
     public double velX = 0;
     public double velZ = 0;
 
-    GlitterParticle(ClientWorld world, double x, double y, double z, double velocityX, double velocityY, double velocityZ, SpriteProvider spriteProvider) {
+    BeamParticle(ClientWorld world, double x, double y, double z, double velocityX, double velocityY, double velocityZ, SpriteProvider spriteProvider) {
         super(world, x, y, z);
         this.velocityMultiplier = 0.6F;
         this.spriteProvider = spriteProvider;
-        this.maxAge = 50;
+        this.maxAge = 30;
         this.scale = 0.001F;
-        this.velocityX = velocityX * 2;
+        this.velocityX = velocityX * 1.5;
         this.velocityY = velocityY;
-        this.velocityZ = velocityZ * 2;
+        this.velocityZ = velocityZ * 1.5;
         velX = velocityX;
         velZ = velocityZ;
         this.x = x + this.random.nextFloat() * 1.5 * this.random.nextBetween(-1, 1);
@@ -48,7 +48,7 @@ public class GlitterParticle extends SpriteBillboardParticle {
         } else {
             this.setColor(0.1F + this.random.nextFloat() * 0.2F, 0.4F + this.random.nextFloat() * 0.3F, this.random.nextFloat() * 0.2F);
         }
-        this.collidesWithWorld = true;
+        this.collidesWithWorld = false;
         this.setSpriteForAge(spriteProvider);
     }
 
@@ -63,20 +63,26 @@ public class GlitterParticle extends SpriteBillboardParticle {
             if(this.age == 1) {
                 if(shouldReduceAmountThatSpawn) {
                     if(reducing) {
-                        int shouldSpawn = this.random.nextBetween(1, 15);
+                        int shouldSpawn = this.random.nextBetween(1, 10);
                         if(shouldSpawn == 1) {
-                            this.scale = 0.5F;
+                            this.scale = 0.30F;
                         } else {
                             reducing = false;
                             this.markDead();
                         }
                     }
                 }
+                if(this.velocityY < 0) {
+                    this.velocityY *= -1;
+                }
             }
             if(this.age == 2) {
                 this.velocityX = 0;
 //                this.velocityY *= -1.02;
                 this.velocityZ = 0;
+            }
+            if(this.age >= 25) {
+                this.alpha -= 0.1;
             }
 //            this.velocityY *= 1.0;
 //            this.angle = this.prevAngle + this.random.nextFloat() / 32;
@@ -98,7 +104,7 @@ public class GlitterParticle extends SpriteBillboardParticle {
         }
 
         public Particle createParticle(DefaultParticleType defaultParticleType, ClientWorld clientWorld, double d, double e, double f, double g, double h, double i) {
-            return new GlitterParticle(clientWorld, d, e, f, g, h, i, this.spriteProvider);
+            return new BeamParticle(clientWorld, d, e, f, g, h, i, this.spriteProvider);
         }
     }
 }
