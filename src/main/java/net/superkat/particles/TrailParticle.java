@@ -27,7 +27,7 @@ public class TrailParticle extends SpriteBillboardParticle {
         this.maxAge = 100;
         this.scale = 0.001F;
         this.velocityX = velocityX * 1.2;
-        this.velocityY = velocityY / 15;
+        this.velocityY = velocityY / 10;
         this.velocityZ = velocityZ * 1.2;
         velX = velocityX;
         velZ = velocityZ;
@@ -81,11 +81,11 @@ public class TrailParticle extends SpriteBillboardParticle {
 //                this.velocityY *= -1.02;
                 this.velocityZ = 0;
             }
-            if(this.age == 2) {
+            if(this.age == 3) {
                 this.velocityY *= -1;
             }
-            if(this.age >= 5) {
-                this.velocityY *= 1.05;
+            if(this.age >= 10) {
+                this.velocityY *= 1.03;
             }
             if(this.age >= 75) {
                 //There is actually a bug here that causes the particle to flicker, however, I liked it. So I decided to keep it
