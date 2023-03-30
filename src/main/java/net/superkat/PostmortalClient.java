@@ -15,6 +15,6 @@ public class PostmortalClient implements ClientModInitializer {
         ParticleFactoryRegistry.getInstance().register(PostmortalMain.TOTEM, TotemParticle.Factory::new);
         ParticleFactoryRegistry.getInstance().register(PostmortalMain.SHATTERED, ShatteredParticle.Factory::new);
         ParticleFactoryRegistry.getInstance().register(PostmortalMain.BEAM, BeamParticle.Factory::new);
-        ParticleFactoryRegistry.getInstance().register(PostmortalMain.GLITTER, GlitterParticle.Factory::new);
+        ParticleFactoryRegistry.getInstance().register(PostmortalMain.TRAIL, TrailParticle.Factory::new);
     }
 }

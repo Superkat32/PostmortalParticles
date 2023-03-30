@@ -19,7 +19,7 @@ public class PostmortalMain implements ModInitializer {
 	public static final DefaultParticleType TOTEM = FabricParticleTypes.simple();
 	public static final DefaultParticleType SHATTERED = FabricParticleTypes.simple();
 	public static final DefaultParticleType BEAM = FabricParticleTypes.simple();
-	public static final DefaultParticleType GLITTER = FabricParticleTypes.simple();
+	public static final DefaultParticleType TRAIL = FabricParticleTypes.simple();
 
 	@Override
 	public void onInitialize() {
@@ -30,7 +30,7 @@ public class PostmortalMain implements ModInitializer {
 		Registry.register(Registries.PARTICLE_TYPE, new Identifier(MOD_ID, "totem"), TOTEM);
 		Registry.register(Registries.PARTICLE_TYPE, new Identifier(MOD_ID, "shattered"), SHATTERED);
 		Registry.register(Registries.PARTICLE_TYPE, new Identifier(MOD_ID, "beam"), BEAM);
-		Registry.register(Registries.PARTICLE_TYPE, new Identifier(MOD_ID, "glitter"), GLITTER);
+		Registry.register(Registries.PARTICLE_TYPE, new Identifier(MOD_ID, "trail"), TRAIL);
 		LOGGER.info("Hello Fabric world!");
 
 	}

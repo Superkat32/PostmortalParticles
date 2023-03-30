@@ -7,7 +7,7 @@ import net.minecraft.client.world.ClientWorld;
 import net.minecraft.particle.DefaultParticleType;
 
 @Environment(EnvType.CLIENT)
-public class GlitterParticle extends SpriteBillboardParticle {
+public class TrailParticle extends SpriteBillboardParticle {
     private final SpriteProvider spriteProvider;
 
     //This boolean is used as a workaround
@@ -20,20 +20,20 @@ public class GlitterParticle extends SpriteBillboardParticle {
     public double velX = 0;
     public double velZ = 0;
 
-    GlitterParticle(ClientWorld world, double x, double y, double z, double velocityX, double velocityY, double velocityZ, SpriteProvider spriteProvider) {
+    TrailParticle(ClientWorld world, double x, double y, double z, double velocityX, double velocityY, double velocityZ, SpriteProvider spriteProvider) {
         super(world, x, y, z);
         this.velocityMultiplier = 0.6F;
         this.spriteProvider = spriteProvider;
-        this.maxAge = 30;
+        this.maxAge = 100;
         this.scale = 0.001F;
-        this.velocityX = velocityX * 1.5;
-        this.velocityY = velocityY;
-        this.velocityZ = velocityZ * 1.5;
+        this.velocityX = velocityX * 1.2;
+        this.velocityY = velocityY / 15;
+        this.velocityZ = velocityZ * 1.2;
         velX = velocityX;
         velZ = velocityZ;
-        this.x = x + this.random.nextFloat() * 1.5 * this.random.nextBetween(-1, 1);
-        this.y = y + this.random.nextFloat() * 2;
-        this.z = z + this.random.nextFloat() * 1.5 * this.random.nextBetween(-1, 1);
+        this.x = x;
+        this.y = y;
+        this.z = z;
 //        this.angle = random.nextFloat() * (float)(2 * Math.PI);
 //        this.angle = 1.2F;
 //        this.setBoundingBoxSpacing(0.02F, 0.02F);
@@ -48,7 +48,7 @@ public class GlitterParticle extends SpriteBillboardParticle {
         } else {
             this.setColor(0.1F + this.random.nextFloat() * 0.2F, 0.4F + this.random.nextFloat() * 0.3F, this.random.nextFloat() * 0.2F);
         }
-        this.collidesWithWorld = false;
+        this.collidesWithWorld = true;
         this.setSpriteForAge(spriteProvider);
     }
 
@@ -63,9 +63,9 @@ public class GlitterParticle extends SpriteBillboardParticle {
             if(this.age == 1) {
                 if(shouldReduceAmountThatSpawn) {
                     if(reducing) {
-                        int shouldSpawn = this.random.nextBetween(1, 10);
+                        int shouldSpawn = this.random.nextBetween(1, 7);
                         if(shouldSpawn == 1) {
-                            this.scale = 0.30F;
+                            this.scale = 0.45F;
                         } else {
                             reducing = false;
                             this.markDead();
@@ -81,7 +81,14 @@ public class GlitterParticle extends SpriteBillboardParticle {
 //                this.velocityY *= -1.02;
                 this.velocityZ = 0;
             }
-            if(this.age >= 25) {
+            if(this.age == 2) {
+                this.velocityY *= -1;
+            }
+            if(this.age >= 5) {
+                this.velocityY *= 1.05;
+            }
+            if(this.age >= 75) {
+                //There is actually a bug here that causes the particle to flicker, however, I liked it. So I decided to keep it
                 this.alpha -= 0.1;
             }
 //            this.velocityY *= 1.0;
@@ -104,7 +111,7 @@ public class GlitterParticle extends SpriteBillboardParticle {
         }
 
         public Particle createParticle(DefaultParticleType defaultParticleType, ClientWorld clientWorld, double d, double e, double f, double g, double h, double i) {
-            return new GlitterParticle(clientWorld, d, e, f, g, h, i, this.spriteProvider);
+            return new TrailParticle(clientWorld, d, e, f, g, h, i, this.spriteProvider);
         }
     }
 }
