@@ -36,6 +36,13 @@
   "postmortalparticles.beam.time": "Particle Timer",
   "postmortalparticles.beam.time.tooltip": "How long should the beam particles last(in seconds)?",
 
+  "postmortalparticles.trail.group": "Trail Particles",
+  "postmortalparticles.trail.group.tooltip": "Trail particles options",
+  "postmortalparticles.trail.enabled": "Trail Particles",
+  "postmortalparticles.trail.enabled.tooltip": "Should the trail particles be shown?",
+  "postmortalparticles.trail.time": "Particle Timer",
+  "postmortalparticles.trail.time.tooltip": "How long should the trail particles last(in seconds)?",
+
   "postmortalparticles.default.group": "Default Particles",
   "postmortalparticles.default.group.tooltip": "Default particles options",
   "postmortalparticles.default.enabled": "Default Particles",

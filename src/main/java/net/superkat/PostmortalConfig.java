@@ -26,7 +26,9 @@ public class PostmortalConfig {
     @ConfigEntry public boolean shatteredParticle = false;
     @ConfigEntry public int shatteredAmount = 5;
     @ConfigEntry public boolean beamParticle = true;
-    @ConfigEntry public float beamTime = 7.5F;
+    @ConfigEntry public float beamTime = 2.0F;
+    @ConfigEntry public boolean trailParticle = true;
+    @ConfigEntry public float trailTime = 7.5F;
     @ConfigEntry public boolean defaultParticles = true;
     @ConfigEntry public float defaultTimer = 1.5F;
     @ConfigEntry public boolean modEnabled = true;
@@ -166,6 +168,34 @@ public class PostmortalConfig {
             beamGroup.option(beamParticle);
             beamGroup.option(beamTime);
             particlesCategoryBuilder.group(beamGroup.build());
+
+            //Trail particles group
+            var trailGroup = OptionGroup.createBuilder()
+                    .name(Text.translatable("postmortalparticles.trail.group"))
+                    .tooltip(Text.translatable("postmortalparticles.trail.group.tooltip"));
+            var trailParticle = Option.createBuilder(boolean.class)
+                    .name(Text.translatable("postmortalparticles.trail.enabled"))
+                    .tooltip(Text.translatable("postmortalparticles.trail.enabled.tooltip"))
+                    .binding(
+                            defaults.trailParticle,
+                            () -> config.trailParticle,
+                            val -> config.trailParticle = val
+                    )
+                    .controller(booleanOption -> new BooleanController(booleanOption, true))
+                    .build();
+            var trailTime = Option.createBuilder(Float.class)
+                    .name(Text.translatable("postmortalparticles.trail.time"))
+                    .tooltip(Text.translatable("postmortalparticles.trail.time.tooltip"))
+                    .binding(
+                            defaults.trailTime,
+                            () -> config.trailTime,
+                            val -> config.trailTime = val
+                    )
+                    .controller(floatOption -> new <Number>FloatSliderController(floatOption, 0, 30, 0.1F))
+                    .build();
+            trailGroup.option(trailParticle);
+            trailGroup.option(trailTime);
+            particlesCategoryBuilder.group(trailGroup.build());
 
             //Default particles group
             var defaultGroup = OptionGroup.createBuilder()
