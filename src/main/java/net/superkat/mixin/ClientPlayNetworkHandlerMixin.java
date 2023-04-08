@@ -20,7 +20,6 @@ public abstract class ClientPlayNetworkHandlerMixin implements TickablePacketLis
 	@Redirect(method = "onEntityStatus", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/particle/ParticleManager;addEmitter(Lnet/minecraft/entity/Entity;Lnet/minecraft/particle/ParticleEffect;I)V"))
 	public void onEntityStatus(ParticleManager instance, Entity entity, ParticleEffect parameters, int maxAge) {
 		if(INSTANCE.getConfig().modEnabled) {
-//			World world = entity.getWorld();
 			if(INSTANCE.getConfig().spamLogs) {
 				LOGGER.info("Showing particles!");
 				logDebugInfo(entity);
