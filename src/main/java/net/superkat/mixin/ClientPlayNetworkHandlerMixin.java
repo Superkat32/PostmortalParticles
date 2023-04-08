@@ -17,16 +17,6 @@ import static net.superkat.PostmortalMain.LOGGER;
 
 @Mixin(ClientPlayNetworkHandler.class)
 public abstract class ClientPlayNetworkHandlerMixin implements TickablePacketListener, ClientPlayPacketListener {
-//	private final ClientWorld world;
-//	private final MinecraftClient client;
-//	public ClientPlayNetworkHandlerMixin(ClientWorld world, MinecraftClient client) {
-//		super();
-//		this.world = world;
-//		this.client = client;
-//	}
-
-//	@Redirect(method = "onEntityStatus", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/particle/ParticleManager;addEmitter(Lnet/minecraft/entity/Entity;Lnet/minecraft/particle/ParticleEffect;I)V"))
-	//TODO - Check if using "instance.addParticle" is better than "world.addParticle"
 	@Redirect(method = "onEntityStatus", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/particle/ParticleManager;addEmitter(Lnet/minecraft/entity/Entity;Lnet/minecraft/particle/ParticleEffect;I)V"))
 	public void onEntityStatus(ParticleManager instance, Entity entity, ParticleEffect parameters, int maxAge) {
 		if(INSTANCE.getConfig().modEnabled) {
