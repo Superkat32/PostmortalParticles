@@ -33,7 +33,7 @@ public abstract class ClientPlayNetworkHandlerMixin implements TickablePacketLis
 //			World world = entity.getWorld();
 			if(INSTANCE.getConfig().spamLogs) {
 				LOGGER.info("Showing particles!");
-				logConfig(entity);
+				logDebugInfo(entity);
 			}
 			if(INSTANCE.getConfig().vortexParticle) {
 				instance.addParticle(PostmortalMain.VORTEX, entity.getX(), entity.getBodyY(1.0), entity.getZ(), 0, 0, 0);
@@ -75,7 +75,7 @@ public abstract class ClientPlayNetworkHandlerMixin implements TickablePacketLis
 		}
 	}
 
-	public void logConfig(Entity entity) {
+	public void logDebugInfo(Entity entity) {
 		LOGGER.info("Entity: " + entity.getType());
 		LOGGER.info("Uuid: " + entity.getUuidAsString());
 		LOGGER.info("X: " + entity.getX());
