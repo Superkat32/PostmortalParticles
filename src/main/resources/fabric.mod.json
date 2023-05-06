@@ -3,7 +3,7 @@
 	"id": "postmortalparticles",
 	"version": "${version}",
 	"name": "Postmortal Particles",
-	"description": "Mystical particles for when totem of undying unleashes it's power.",
+	"description": "Overhauls the totem of undying particle effect.",
 	"authors": [
 		"Superkat32"
 	],
