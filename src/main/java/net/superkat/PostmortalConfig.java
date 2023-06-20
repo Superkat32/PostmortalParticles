@@ -1,15 +1,15 @@
 package net.superkat;
 
-import dev.isxander.yacl.api.ConfigCategory;
-import dev.isxander.yacl.api.Option;
-import dev.isxander.yacl.api.OptionGroup;
-import dev.isxander.yacl.api.YetAnotherConfigLib;
-import dev.isxander.yacl.config.ConfigEntry;
-import dev.isxander.yacl.config.ConfigInstance;
-import dev.isxander.yacl.config.GsonConfigInstance;
-import dev.isxander.yacl.gui.controllers.BooleanController;
-import dev.isxander.yacl.gui.controllers.slider.FloatSliderController;
-import dev.isxander.yacl.gui.controllers.slider.IntegerSliderController;
+import dev.isxander.yacl3.api.ConfigCategory;
+import dev.isxander.yacl3.api.Option;
+import dev.isxander.yacl3.api.OptionGroup;
+import dev.isxander.yacl3.api.YetAnotherConfigLib;
+import dev.isxander.yacl3.config.ConfigEntry;
+import dev.isxander.yacl3.config.ConfigInstance;
+import dev.isxander.yacl3.config.GsonConfigInstance;
+import dev.isxander.yacl3.gui.controllers.BooleanController;
+import dev.isxander.yacl3.gui.controllers.slider.FloatSliderController;
+import dev.isxander.yacl3.gui.controllers.slider.IntegerSliderController;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.text.Text;
 
@@ -18,7 +18,8 @@ import java.nio.file.Path;
 public class PostmortalConfig {
     public static final ConfigInstance<PostmortalConfig> INSTANCE = new GsonConfigInstance<>(PostmortalConfig.class, Path.of("./config/postmortal-config.json"));
 
-    @ConfigEntry public boolean vortexParticle = true;
+    @ConfigEntry
+    public boolean vortexParticle = true;
     @ConfigEntry public boolean sparkleParticle = true;
     @ConfigEntry public float sparkleTimer = 5.0F;
     @ConfigEntry public boolean sparkleExplosionParticle = true;
