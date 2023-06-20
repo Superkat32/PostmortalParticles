@@ -23,7 +23,6 @@ public class PostmortalMain implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-
 		Registry.register(Registries.PARTICLE_TYPE, new Identifier(MOD_ID, "vortex"), VORTEX);
 		Registry.register(Registries.PARTICLE_TYPE, new Identifier(MOD_ID, "sparkle"), SPARKLE);
 		Registry.register(Registries.PARTICLE_TYPE, new Identifier(MOD_ID, "explosion"), EXPLOSION);
@@ -31,8 +30,5 @@ public class PostmortalMain implements ModInitializer {
 		Registry.register(Registries.PARTICLE_TYPE, new Identifier(MOD_ID, "shattered"), SHATTERED);
 		Registry.register(Registries.PARTICLE_TYPE, new Identifier(MOD_ID, "beam"), BEAM);
 		Registry.register(Registries.PARTICLE_TYPE, new Identifier(MOD_ID, "trail"), TRAIL);
-		//TODO - VVVVVVVVVVVVVVVVVVVVVVVVVVV --- REMOVE THIS GOSH DANGIT
-		LOGGER.info("Hello Fabric world!");
-
 	}
 }
