@@ -2,7 +2,6 @@ package net.superkat;
 
 import dev.isxander.yacl3.api.*;
 import dev.isxander.yacl3.config.ConfigEntry;
-import dev.isxander.yacl3.config.ConfigInstance;
 import dev.isxander.yacl3.config.GsonConfigInstance;
 import dev.isxander.yacl3.gui.controllers.BooleanController;
 import dev.isxander.yacl3.gui.controllers.slider.FloatSliderController;
@@ -13,7 +12,8 @@ import net.minecraft.text.Text;
 import java.nio.file.Path;
 
 public class PostmortalConfig {
-    public static final ConfigInstance<PostmortalConfig> INSTANCE = new GsonConfigInstance<>(PostmortalConfig.class, Path.of("./config/postmortal-config.json"));
+    public static final GsonConfigInstance<PostmortalConfig> INSTANCE = GsonConfigInstance.createBuilder(PostmortalConfig.class)
+        .setPath(Path.of("./config/postmortal-config.json")).build();
 
     @ConfigEntry
     public boolean vortexParticle = true;
