@@ -31,6 +31,7 @@ public class PostmortalMain implements ModInitializer {
 		Registry.register(Registries.PARTICLE_TYPE, new Identifier(MOD_ID, "shattered"), SHATTERED);
 		Registry.register(Registries.PARTICLE_TYPE, new Identifier(MOD_ID, "beam"), BEAM);
 		Registry.register(Registries.PARTICLE_TYPE, new Identifier(MOD_ID, "trail"), TRAIL);
+		//TODO - VVVVVVVVVVVVVVVVVVVVVVVVVVV --- REMOVE THIS GOSH DANGIT
 		LOGGER.info("Hello Fabric world!");
 
 	}

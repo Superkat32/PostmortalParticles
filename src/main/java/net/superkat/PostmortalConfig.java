@@ -1,9 +1,6 @@
 package net.superkat;
 
-import dev.isxander.yacl3.api.ConfigCategory;
-import dev.isxander.yacl3.api.Option;
-import dev.isxander.yacl3.api.OptionGroup;
-import dev.isxander.yacl3.api.YetAnotherConfigLib;
+import dev.isxander.yacl3.api.*;
 import dev.isxander.yacl3.config.ConfigEntry;
 import dev.isxander.yacl3.config.ConfigInstance;
 import dev.isxander.yacl3.config.GsonConfigInstance;
@@ -44,16 +41,20 @@ public class PostmortalConfig {
             //Vortex particle group
             var vortexGroup = OptionGroup.createBuilder()
                     .name(Text.translatable("postmortalparticles.vortex.group"))
-                    .tooltip(Text.translatable("postmortalparticles.vortex.group.tooltip"));
-            var vortex = Option.createBuilder(boolean.class)
+                    .description(OptionDescription.createBuilder()
+                            .text(Text.translatable("postmortalparticles.vortex.group.tooltip"))
+                            .build());
+            var vortex = Option.<Boolean>createBuilder()
                     .name(Text.translatable("postmortalparticles.vortex.enabled"))
-                    .tooltip(Text.translatable("postmortalparticles.vortex.enabled.tooltip"))
+                    .description(OptionDescription.createBuilder()
+                            .text(Text.translatable("postmortalparticles.vortex.enabled.tooltip"))
+                            .build())
                     .binding(
                             defaults.vortexParticle,
                             () -> config.vortexParticle,
                             val -> config.vortexParticle = val
                     )
-                    .controller(booleanOption -> new BooleanController(booleanOption, true))
+                    .customController(booleanOption -> new BooleanController(booleanOption, true))
                     .build();
             vortexGroup.option(vortex);
             particlesCategoryBuilder.group(vortexGroup.build());
@@ -61,26 +62,32 @@ public class PostmortalConfig {
             //Sparkle particle group
             var sparkleGroup = OptionGroup.createBuilder()
                     .name(Text.translatable("postmortalparticles.sparkle.group"))
-                    .tooltip(Text.translatable("postmortalparticles.sparkle.group.tooltip"));
-            var sparkle = Option.createBuilder(Boolean.class)
+                    .description(OptionDescription.createBuilder()
+                            .text(Text.translatable("postmortalparticles.sparkle.group.tooltip"))
+                            .build());
+            var sparkle = Option.<Boolean>createBuilder()
                     .name(Text.translatable("postmortalparticles.sparkle.enabled"))
-                    .tooltip(Text.translatable("postmortalparticles.sparkle.enabled.tooltip"))
+                    .description(OptionDescription.createBuilder()
+                            .text(Text.translatable("postmortalparticles.sparkle.enabled.tooltip"))
+                            .build())
                     .binding(
                             defaults.sparkleParticle,
                             () -> config.sparkleParticle,
                             val -> config.sparkleParticle = val
                     )
-                    .controller(booleanOption -> new BooleanController(booleanOption, true))
+                    .customController(booleanOption -> new BooleanController(booleanOption, true))
                     .build();
-            var sparkleSlider = Option.createBuilder(Float.class)
+            var sparkleSlider = Option.<Float>createBuilder()
                     .name(Text.translatable("postmortalparticles.sparkle.time"))
-                    .tooltip(Text.translatable("postmortalparticles.sparkle.time.tooltip"))
+                            .description(OptionDescription.createBuilder()
+                                    .text(Text.translatable("postmortalparticles.sparkle.time.tooltip"))
+                                    .build())
                     .binding(
                             defaults.sparkleTimer,
                             () -> config.sparkleTimer,
                             val -> config.sparkleTimer = val
                     )
-                    .controller(floatOption -> new <Number>FloatSliderController(floatOption, 0, 30, 0.1F))
+                    .customController(floatOption -> new <Number>FloatSliderController(floatOption, 0, 30, 0.1F))
                     .build();
             sparkleGroup.option(sparkle);
             sparkleGroup.option(sparkleSlider);
@@ -89,16 +96,20 @@ public class PostmortalConfig {
             //Sparkle explosion group
             var sparkleExplosionGroup = OptionGroup.createBuilder()
                     .name(Text.translatable("postmortalparticles.explosion.group"))
-                    .tooltip(Text.translatable("postmortalparticles.explosion.group.tooltip"));
-            var sparkleExplosion = Option.createBuilder(boolean.class)
+                    .description(OptionDescription.createBuilder()
+                            .text(Text.translatable("postmortalparticles.explosion.group.tooltip"))
+                            .build());
+            var sparkleExplosion = Option.<Boolean>createBuilder()
                     .name(Text.translatable("postmortalparticles.explosion.enabled"))
-                    .tooltip(Text.translatable("postmortalparticles.explosion.enabled.tooltip"))
+                            .description(OptionDescription.createBuilder()
+                                    .text(Text.translatable("postmortalparticles.explosion.enabled.tooltip"))
+                                    .build())
                     .binding(
                             defaults.sparkleExplosionParticle,
                             () -> config.sparkleExplosionParticle,
                             val -> config.sparkleExplosionParticle = val
                     )
-                    .controller(booleanOption -> new BooleanController(booleanOption, true))
+                    .customController(booleanOption -> new BooleanController(booleanOption, true))
                     .build();
             sparkleExplosionGroup.option(sparkleExplosion);
             particlesCategoryBuilder.group(sparkleExplosionGroup.build());
@@ -106,36 +117,44 @@ public class PostmortalConfig {
             //Totem particle group
             var totemGroup = OptionGroup.createBuilder()
                     .name(Text.translatable("postmortalparticles.totem.group"))
-                    .tooltip(Text.translatable("postmortalparticles.totem.group.tooltip"));
-            var totemParticle = Option.createBuilder(boolean.class)
+                    .description(OptionDescription.createBuilder()
+                            .text(Text.translatable("postmortalparticles.totem.group.tooltip"))
+                            .build());
+            var totemParticle = Option.<Boolean>createBuilder()
                     .name(Text.translatable("postmortalparticles.totem.enabled"))
-                    .tooltip(Text.translatable("postmortalparticles.totem.enabled.tooltip"))
+                            .description(OptionDescription.createBuilder()
+                                    .text(Text.translatable("postmortalparticles.totem.enabled.tooltip"))
+                                    .build())
                     .binding(
                             defaults.totemParticle,
                             () -> config.totemParticle,
                             val -> config.totemParticle = val
                     )
-                    .controller(booleanOption -> new BooleanController(booleanOption, true))
+                    .customController(booleanOption -> new BooleanController(booleanOption, true))
                     .build();
-            var shatteredParticle = Option.createBuilder(boolean.class)
+            var shatteredParticle = Option.<Boolean>createBuilder()
                     .name(Text.translatable("postmortalparticles.shattered.enabled"))
-                    .tooltip(Text.translatable("postmortalparticles.shattered.enabled.tooltip"))
+                            .description(OptionDescription.createBuilder()
+                                    .text(Text.translatable("postmortalparticles.shattered.enabled.tooltip"))
+                                    .build())
                     .binding(
                             defaults.shatteredParticle,
                             () -> config.shatteredParticle,
                             val -> config.shatteredParticle = val
                     )
-                    .controller(booleanOption -> new BooleanController(booleanOption, true))
+                    .customController(booleanOption -> new BooleanController(booleanOption, true))
                     .build();
-            var shatteredAmount = Option.createBuilder(Integer.class)
+            var shatteredAmount = Option.<Integer>createBuilder()
                     .name(Text.translatable("postmortalparticles.shattered.amount"))
-                    .tooltip(Text.translatable("postmortalparticles.shattered.amount.tooltip"))
+                    .description(OptionDescription.createBuilder()
+                            .text(Text.translatable("postmortalparticles.shattered.amount.tooltip"))
+                            .build())
                     .binding(
                             defaults.shatteredAmount,
                             () -> config.shatteredAmount,
                             val -> config.shatteredAmount = val
                     )
-                    .controller(integerOption -> new <Number>IntegerSliderController(integerOption, 0, 30, 1))
+                    .customController(integerOption -> new <Number>IntegerSliderController(integerOption, 0, 30, 1))
                     .build();
             totemGroup.option(totemParticle);
             totemGroup.option(shatteredParticle);
@@ -145,26 +164,32 @@ public class PostmortalConfig {
             //Beam particles group
             var beamGroup = OptionGroup.createBuilder()
                     .name(Text.translatable("postmortalparticles.beam.group"))
-                    .tooltip(Text.translatable("postmortalparticles.beam.group.tooltip"));
-            var beamParticle = Option.createBuilder(boolean.class)
+                    .description(OptionDescription.createBuilder()
+                            .text(Text.translatable("postmortalparticles.beam.group.tooltip"))
+                            .build());
+            var beamParticle = Option.<Boolean>createBuilder()
                     .name(Text.translatable("postmortalparticles.beam.enabled"))
-                    .tooltip(Text.translatable("postmortalparticles.beam.enabled.tooltip"))
+                    .description(OptionDescription.createBuilder()
+                            .text(Text.translatable("postmortalparticles.beam.enabled.tooltip"))
+                            .build())
                     .binding(
                             defaults.beamParticle,
                             () -> config.beamParticle,
                             val -> config.beamParticle = val
                     )
-                    .controller(booleanOption -> new BooleanController(booleanOption, true))
+                    .customController(booleanOption -> new BooleanController(booleanOption, true))
                     .build();
-            var beamTime = Option.createBuilder(Float.class)
+            var beamTime = Option.<Float>createBuilder()
                     .name(Text.translatable("postmortalparticles.beam.time"))
-                    .tooltip(Text.translatable("postmortalparticles.beam.time.tooltip"))
+                    .description(OptionDescription.createBuilder()
+                            .text(Text.translatable("postmortalparticles.beam.time.tooltip"))
+                            .build())
                     .binding(
                             defaults.beamTime,
                             () -> config.beamTime,
                             val -> config.beamTime = val
                     )
-                    .controller(floatOption -> new <Number>FloatSliderController(floatOption, 0, 30, 0.1F))
+                    .customController(floatOption -> new <Number>FloatSliderController(floatOption, 0, 30, 0.1F))
                     .build();
             beamGroup.option(beamParticle);
             beamGroup.option(beamTime);
@@ -173,26 +198,32 @@ public class PostmortalConfig {
             //Trail particles group
             var trailGroup = OptionGroup.createBuilder()
                     .name(Text.translatable("postmortalparticles.trail.group"))
-                    .tooltip(Text.translatable("postmortalparticles.trail.group.tooltip"));
-            var trailParticle = Option.createBuilder(boolean.class)
+                    .description(OptionDescription.createBuilder()
+                            .text(Text.translatable("postmortalparticles.trail.group.tooltip"))
+                            .build());
+            var trailParticle = Option.<Boolean>createBuilder()
                     .name(Text.translatable("postmortalparticles.trail.enabled"))
-                    .tooltip(Text.translatable("postmortalparticles.trail.enabled.tooltip"))
+                    .description(OptionDescription.createBuilder()
+                            .text(Text.translatable("postmortalparticles.trail.enabled.tooltip"))
+                            .build())
                     .binding(
                             defaults.trailParticle,
                             () -> config.trailParticle,
                             val -> config.trailParticle = val
                     )
-                    .controller(booleanOption -> new BooleanController(booleanOption, true))
+                    .customController(booleanOption -> new BooleanController(booleanOption, true))
                     .build();
-            var trailTime = Option.createBuilder(Float.class)
+            var trailTime = Option.<Float>createBuilder()
                     .name(Text.translatable("postmortalparticles.trail.time"))
-                    .tooltip(Text.translatable("postmortalparticles.trail.time.tooltip"))
+                    .description(OptionDescription.createBuilder()
+                            .text(Text.translatable("postmortalparticles.trail.time.tooltip"))
+                            .build())
                     .binding(
                             defaults.trailTime,
                             () -> config.trailTime,
                             val -> config.trailTime = val
                     )
-                    .controller(floatOption -> new <Number>FloatSliderController(floatOption, 0, 30, 0.1F))
+                    .customController(floatOption -> new <Number>FloatSliderController(floatOption, 0, 30, 0.1F))
                     .build();
             trailGroup.option(trailParticle);
             trailGroup.option(trailTime);
@@ -201,26 +232,32 @@ public class PostmortalConfig {
             //Default particles group
             var defaultGroup = OptionGroup.createBuilder()
                     .name(Text.translatable("postmortalparticles.default.group"))
-                    .tooltip(Text.translatable("postmortalparticles.default.group.tooltip"));
-            var defaultParticles = Option.createBuilder(boolean.class)
+                    .description(OptionDescription.createBuilder()
+                            .text(Text.translatable("postmortalparticles.default.group.tooltip"))
+                            .build());
+            var defaultParticles = Option.<Boolean>createBuilder()
                     .name(Text.translatable("postmortalparticles.default.enabled"))
-                    .tooltip(Text.translatable("postmortalparticles.default.enabled.tooltip"))
+                    .description(OptionDescription.createBuilder()
+                            .text(Text.translatable("postmortalparticles.default.enabled.tooltip"))
+                            .build())
                     .binding(
                             defaults.defaultParticles,
                             () -> config.defaultParticles,
                             val -> config.defaultParticles = val
                     )
-                    .controller(booleanOption -> new BooleanController(booleanOption, true))
+                    .customController(booleanOption -> new BooleanController(booleanOption, true))
                     .build();
-            var defaultSlider = Option.createBuilder(Float.class)
+            var defaultSlider = Option.<Float>createBuilder()
                     .name(Text.translatable("postmortalparticles.default.time"))
-                    .tooltip(Text.translatable("postmortalparticles.default.time.tooltip"))
+                    .description(OptionDescription.createBuilder()
+                            .text(Text.translatable("postmortalparticles.default.time.tooltip"))
+                            .build())
                     .binding(
                             defaults.defaultTimer,
                             () -> config.defaultTimer,
                             val -> config.defaultTimer = val
                     )
-                    .controller(floatOption -> new <Number>FloatSliderController(floatOption, 0, 30, 0.1F))
+                    .customController(floatOption -> new <Number>FloatSliderController(floatOption, 0, 30, 0.1F))
                     .build();
             defaultGroup.option(defaultParticles);
             defaultGroup.option(defaultSlider);
@@ -235,26 +272,32 @@ public class PostmortalConfig {
             //Other group
             var otherGroup = OptionGroup.createBuilder()
                     .name(Text.translatable("postmortalparticles.other.group"))
-                    .tooltip(Text.translatable("postmortalparticles.other.group.tooltip"));
-            var modEnabled = Option.createBuilder(boolean.class)
+                    .description(OptionDescription.createBuilder()
+                            .text(Text.translatable("postmortalparticles.other.group.tooltip"))
+                            .build());
+            var modEnabled = Option.<Boolean>createBuilder()
                     .name(Text.translatable("postmortalparticles.other.modenabled"))
-                    .tooltip(Text.translatable("postmortalparticles.other.modenabled.tooltip"))
+                    .description(OptionDescription.createBuilder()
+                            .text(Text.translatable("postmortalparticles.other.modenabled.tooltip"))
+                            .build())
                     .binding(
                             defaults.modEnabled,
                             () -> config.modEnabled,
                             val -> config.modEnabled = val
                     )
-                    .controller(booleanOption -> new BooleanController(booleanOption, true))
+                    .customController(booleanOption -> new BooleanController(booleanOption, true))
                     .build();
-            var spamLogs = Option.createBuilder(boolean.class)
+            var spamLogs = Option.<Boolean>createBuilder()
                     .name(Text.translatable("postmortalparticles.other.spamlogs"))
-                    .tooltip(Text.translatable("postmortalparticles.other.spamlogs.tooltip"))
+                    .description(OptionDescription.createBuilder()
+                            .text(Text.translatable("postmortalparticles.other.spamlogs.tooltip"))
+                            .build())
                     .binding(
                             defaults.spamLogs,
                             () -> config.spamLogs,
                             val -> config.spamLogs = val
                     )
-                    .controller(booleanOption -> new BooleanController(booleanOption, true))
+                    .customController(booleanOption -> new BooleanController(booleanOption, true))
                     .build();
             otherGroup.option(modEnabled);
             otherGroup.option(spamLogs);
