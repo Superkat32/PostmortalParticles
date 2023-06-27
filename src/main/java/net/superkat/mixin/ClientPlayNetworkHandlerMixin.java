@@ -3,8 +3,6 @@ package net.superkat.mixin;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
 import net.minecraft.client.particle.ParticleManager;
 import net.minecraft.entity.Entity;
-import net.minecraft.network.listener.ClientPlayPacketListener;
-import net.minecraft.network.listener.TickablePacketListener;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleTypes;
 import net.superkat.PostmortalMain;
@@ -16,9 +14,9 @@ import static net.superkat.PostmortalConfig.INSTANCE;
 import static net.superkat.PostmortalMain.LOGGER;
 
 @Mixin(ClientPlayNetworkHandler.class)
-public abstract class ClientPlayNetworkHandlerMixin implements TickablePacketListener, ClientPlayPacketListener {
-	@Redirect(method = "onEntityStatus", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/particle/ParticleManager;addEmitter(Lnet/minecraft/entity/Entity;Lnet/minecraft/particle/ParticleEffect;I)V"))
-	public void onEntityStatus(ParticleManager instance, Entity entity, ParticleEffect parameters, int maxAge) {
+public abstract class ClientPlayNetworkHandlerMixin {
+    @Redirect(method = "onEntityStatus", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/particle/ParticleManager;addEmitter(Lnet/minecraft/entity/Entity;Lnet/minecraft/particle/ParticleEffect;I)V"))
+    public void onEntityStatus(ParticleManager instance, Entity entity, ParticleEffect parameters, int maxAge) {
 		if(INSTANCE.getConfig().modEnabled) {
 			if(INSTANCE.getConfig().spamLogs) {
 				LOGGER.info("Showing particles!");
@@ -62,7 +60,7 @@ public abstract class ClientPlayNetworkHandlerMixin implements TickablePacketLis
 			}
 			instance.addEmitter(entity, ParticleTypes.TOTEM_OF_UNDYING, 30);
 		}
-	}
+    }
 
 	public void logDebugInfo(Entity entity) {
 		LOGGER.info("Entity: " + entity.getType());
